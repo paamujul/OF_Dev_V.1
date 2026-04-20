@@ -3,6 +3,8 @@ global constants and coefficients for the athlete wellness pipeline.
 sources: project plan docs 1-4.
 """
 
+import os
+
 # ---------------------------------------------------------------------------
 # hrv / wearable windows
 # ---------------------------------------------------------------------------
@@ -180,3 +182,9 @@ ck_volume_distribution = 10.0
 basal_glucose = 90.0
 independent_clearance_p1 = 0.03
 insulin_sensitivity_p3 = 0.0001
+
+# ---------------------------------------------------------------------------
+# gemini ai configuration
+# ---------------------------------------------------------------------------
+gemini_model_name = "gemini-2.5-flash"
+gemini_api_key = os.environ.get("GEMINI_API_KEY", "")

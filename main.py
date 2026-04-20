@@ -1,6 +1,7 @@
 """
 main entry point — orchestrates the full athlete wellness pipeline.
-loads mock data, runs all algorithms, compiles master output.
+loads mock data, runs all algorithms, compiles master output,
+and generates ai-powered recommendations.
 """
 
 import os
@@ -13,6 +14,7 @@ from data_struct.athlete_profile import load_athlete
 from algorithms.integrators.travel_readiness import compute_travel_readiness
 from algorithms.integrators.bloodwork_readiness import compute_bloodwork_readiness
 from algorithms.integrators.master_composite import compile_master_output
+from algorithms.ai.recommendation_engine import run_recommendation_engine
 
 
 def get_data_paths():
@@ -69,6 +71,21 @@ def run_pipeline():
     print(f"{'=' * 50}")
     print(f"\nmaster output written to: {output_path}")
 
+    print("\ngenerating ai recommendations...")
+    ai_result = run_recommendation_engine(master)
+
+    if ai_result["status"] == "generated":
+        print(f"  model: {ai_result['model']}")
+        print(f"  output: {ai_result.get('output_path', 'n/a')}")
+        print(f"\n{'=' * 50}")
+        print("  athlete protocols")
+        print(f"{'=' * 50}")
+        print(f"\n{ai_result['recommendations']}")
+    elif ai_result["status"] == "skipped":
+        print(f"  skipped: {ai_result['reason']}")
+        print("  set GEMINI_API_KEY environment variable to enable")
+
+    master["ai_recommendations"] = ai_result
     return master
 
 
