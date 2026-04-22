@@ -180,3 +180,38 @@ ck_volume_distribution = 10.0
 basal_glucose = 90.0
 independent_clearance_p1 = 0.03
 insulin_sensitivity_p3 = 0.0001
+
+# ---------------------------------------------------------------------------
+# javelin biomechanics — elite male ceilings
+# ---------------------------------------------------------------------------
+
+# ref: bartonietz (2000) — javelin throwing: an approach to performance development
+max_squat_kg = 190.0
+max_pullover_kg = 110.0
+
+# ref: pmc10690512 (2023) — hang power clean expertise; 1.64x bw for 80kg athlete
+max_hang_clean_kg = 128.8
+
+# ref: hubbard et al. — release parameter contributions to new-rules javelin
+max_release_velocity_ms = 31.5
+target_release_angle_deg = 36.0
+target_attack_angle_deg = 2.0
+
+# ref: makino et al. (2023) — kinematic contribution at different run-up velocities
+target_runup_velocity_ms = 7.6
+
+# ref: pmc10516106 (2023) — thorax-to-humerus energy transfer
+baseline_energy_transfer_wkg = 35.0
+
+# ref: ijisrt (2025) — plyometric training and javelin throw ability
+plyo_contacts_base = 120
+plyo_contacts_strength = 80
+plyo_contacts_taper = 40
+
+# periodization intensity modifiers
+intensity_mod_hypertrophy = 0.80
+intensity_mod_strength = 0.90
+intensity_mod_peaking = 0.98
+velocity_mod_hypertrophy = 0.85
+velocity_mod_strength = 0.92
+velocity_mod_peaking = 1.0
