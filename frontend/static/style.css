@@ -149,28 +149,40 @@ body {
 }
 
 .badge-critical {
-  background: var(--accent);
-  color: white;
+  background: #ffebee;
+  color: #c62828;
 }
 
 .badge-high {
-  background: #333;
-  color: white;
+  background: #fff3e0;
+  color: #ef6c00;
 }
 
 .badge-moderate {
-  background: #888;
-  color: white;
+  background: #fff8e1;
+  color: #f9a825;
 }
 
 .badge-low {
-  background: var(--accent-light);
-  color: var(--accent);
+  background: #e8f5e9;
+  color: #2e7d32;
 }
 
 .badge-normal {
-  background: var(--accent-light);
-  color: var(--text-secondary);
+  background: #e3f2fd;
+  color: #1565c0;
+}
+
+.text-critical {
+  color: #c62828;
+}
+
+.text-warning {
+  color: #ef6c00;
+}
+
+.text-good {
+  color: #2e7d32;
 }
 
 .section-title {

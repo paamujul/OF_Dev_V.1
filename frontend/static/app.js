@@ -25,6 +25,9 @@ function renderDashboard(master, recs) {
   renderMasterScore(master);
   renderBiometrics(master);
   renderBloodworkPanels(master);
+  if (master.biomechanics) {
+    renderBiomechanics(master);
+  }
   renderTravelImpact(master);
   renderCircadian(master);
   renderAI(recs);
@@ -76,17 +79,29 @@ function renderMasterScore(master) {
 function renderBiometrics(master) {
   var pretravel = master.travel.components.pretravel;
 
-  document.getElementById("phi-ans").textContent = pretravel.phi_ans;
-  document.getElementById("phi-slp").textContent = pretravel.phi_slp;
-  document.getElementById("wearable-baseline").textContent = pretravel.wearable_baseline;
+  var phiAnsEl = document.getElementById("phi-ans");
+  phiAnsEl.textContent = pretravel.phi_ans;
+  applyColorClass(phiAnsEl, pretravel.phi_ans, true);
+
+  var phiSlpEl = document.getElementById("phi-slp");
+  phiSlpEl.textContent = pretravel.phi_slp;
+  applyColorClass(phiSlpEl, pretravel.phi_slp, true);
+
+  var wearableEl = document.getElementById("wearable-baseline");
+  wearableEl.textContent = pretravel.wearable_baseline;
+  applyColorClass(wearableEl, pretravel.wearable_baseline, true);
 
   var bwScore = master.bloodwork.bloodwork_score;
   var flags = master.bloodwork.flag_count;
   var attn = master.bloodwork.attenuation_factors;
 
-  document.getElementById("bloodwork-score").textContent = bwScore;
-  document.getElementById("bloodwork-flags").textContent =
-    flags + " clinical flag" + (flags !== 1 ? "s" : "");
+  var bwScoreEl = document.getElementById("bloodwork-score");
+  bwScoreEl.textContent = bwScore;
+  applyColorClass(bwScoreEl, bwScore, true);
+
+  var flagsEl = document.getElementById("bloodwork-flags");
+  flagsEl.textContent = flags + " clinical flag" + (flags !== 1 ? "s" : "");
+  if (flags > 0) flagsEl.classList.add("text-critical");
   document.getElementById("rho-hormonal").textContent = attn.rho_hormonal;
   document.getElementById("rho-iron").textContent = attn.rho_iron;
   document.getElementById("rho-muscle").textContent = attn.rho_muscle;
@@ -162,17 +177,82 @@ function renderBloodworkPanels(master) {
   }
 }
 
+function renderBiomechanics(master) {
+  var bio = master.biomechanics;
+  if (!bio) return;
+
+  var scoreEl = document.getElementById("biomech-score");
+  scoreEl.textContent = bio.biomechanics_composite_score;
+  applyColorClass(scoreEl, bio.biomechanics_composite_score, true);
+
+  document.getElementById("biomech-protocol").textContent = 
+    bio.protocol_recommendation.replace(/_/g, " ");
+
+  var components = bio.component_scores || {};
+  
+  var seqEl = document.getElementById("bio-seq");
+  seqEl.textContent = components.temporal_sequencing;
+  applyColorClass(seqEl, components.temporal_sequencing, true);
+
+  var blkEl = document.getElementById("bio-blk");
+  blkEl.textContent = components.block_mechanics;
+  applyColorClass(blkEl, components.block_mechanics, true);
+
+  var aerEl = document.getElementById("bio-aer");
+  aerEl.textContent = components.lever_aerodynamic;
+  applyColorClass(aerEl, components.lever_aerodynamic, true);
+
+  var pwrEl = document.getElementById("bio-pwr");
+  pwrEl.textContent = components.power_profiler;
+  applyColorClass(pwrEl, components.power_profiler, true);
+
+  var degEl = document.getElementById("bio-deg");
+  degEl.textContent = components.technique_degradation;
+  applyColorClass(degEl, components.technique_degradation, true);
+
+  var listEl = document.getElementById("biomech-flags-list");
+  listEl.innerHTML = "";
+
+  var flags = bio.flags || [];
+  for (var i = 0; i < flags.length; i++) {
+    var item = flags[i];
+    var li = document.createElement("li");
+    li.className = "intervention-item";
+
+    li.innerHTML =
+      '<div class="intervention-dot"></div>' +
+      '<div class="intervention-content">' +
+        '<div class="intervention-trigger text-critical">' + item.issue.replace(/_/g, " ") + ' (' + item.source.replace(/_/g, " ") + ')</div>' +
+        '<div class="intervention-action">' + item.detail + '</div>' +
+      '</div>';
+    listEl.appendChild(li);
+  }
+}
+
 
 function renderTravelImpact(master) {
   var tdi = master.travel.components.degradation.tdi;
   var thermo = master.travel.components.thermoregulatory;
 
-  document.getElementById("tdi-percent").textContent = tdi.tdi_percent + "%";
-  document.getElementById("tax-hypoxic").textContent = (tdi.hypoxic_tax * 100).toFixed(1) + "%";
-  document.getElementById("tax-kinematic").textContent = (tdi.kinematic_tax * 100).toFixed(1) + "%";
-  document.getElementById("tax-circadian").textContent = (tdi.circadian_tax * 100).toFixed(1) + "%";
+  var tdiEl = document.getElementById("tdi-percent");
+  tdiEl.textContent = tdi.tdi_percent + "%";
+  applyColorClass(tdiEl, tdi.tdi_percent, false);
 
-  document.getElementById("power-percent").textContent = thermo.expected_power_percent + "%";
+  var hypEl = document.getElementById("tax-hypoxic");
+  hypEl.textContent = (tdi.hypoxic_tax * 100).toFixed(1) + "%";
+  applyColorClass(hypEl, tdi.hypoxic_tax * 100, false);
+
+  var kinEl = document.getElementById("tax-kinematic");
+  kinEl.textContent = (tdi.kinematic_tax * 100).toFixed(1) + "%";
+  applyColorClass(kinEl, tdi.kinematic_tax * 100, false);
+
+  var cirEl = document.getElementById("tax-circadian");
+  cirEl.textContent = (tdi.circadian_tax * 100).toFixed(1) + "%";
+  applyColorClass(cirEl, tdi.circadian_tax * 100, false);
+
+  var pwrEl = document.getElementById("power-percent");
+  pwrEl.textContent = thermo.expected_power_percent + "%";
+  applyColorClass(pwrEl, thermo.expected_power_percent, true);
   document.getElementById("ewbgt").textContent = thermo.ewbgt + "°";
   document.getElementById("core-temp").textContent = thermo.estimated_core_temp + "°";
   document.getElementById("acclimation").textContent = thermo.acclimation_factor;
@@ -267,4 +347,20 @@ function escapeHtml(str) {
   var div = document.createElement("div");
   div.textContent = str;
   return div.innerHTML;
+}
+
+function applyColorClass(element, value, isHigherBetter) {
+  element.classList.remove("text-critical", "text-warning", "text-good");
+  var num = parseFloat(value);
+  if (isNaN(num)) return;
+  
+  if (isHigherBetter) {
+    if (num < 50) element.classList.add("text-critical");
+    else if (num < 80) element.classList.add("text-warning");
+    else element.classList.add("text-good");
+  } else {
+    if (num > 50) element.classList.add("text-critical");
+    else if (num > 20) element.classList.add("text-warning");
+    else element.classList.add("text-good");
+  }
 }
