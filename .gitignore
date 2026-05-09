@@ -11,3 +11,8 @@ __pycache__/
 # Project specific
 outputs/
 Project_Plans/
+frontend/
+algorithms/ai/
+Presentations/
+Flowchart/
+pipeline/

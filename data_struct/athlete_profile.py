@@ -1,6 +1,7 @@
 """
 athlete profile data structure.
-aggregates bio, wearable, bloodwork, and travel data into a single object.
+aggregates bio, wearable, bloodwork, travel, emg, and muscle architecture
+data into a single object.
 """
 
 import json
@@ -12,11 +13,14 @@ from config.settings import hrv_long_window, hrv_short_window, min_readings_req
 class athleteprofile:
     """unified athlete data container for pipeline consumption."""
 
-    def __init__(self, bio, wearables, bloodwork, travel):
+    def __init__(self, bio, wearables, bloodwork, travel,
+                 emg=None, muscle_arch=None):
         self.bio = bio
         self.wearables = wearables
         self.bloodwork = bloodwork
         self.travel = travel
+        self.emg = emg or {}
+        self.muscle_arch = muscle_arch or {}
 
     def today_hrv(self):
         return self.wearables["hrv_rmssd_30d"][-1]
@@ -62,7 +66,8 @@ class athleteprofile:
         return max(0, dest - origin)
 
 
-def load_athlete(bio_path, wearable_path, bloodwork_path, travel_path):
+def load_athlete(bio_path, wearable_path, bloodwork_path, travel_path,
+                 emg_path=None, muscle_arch_path=None):
     """loads all json sources and returns an athleteprofile instance."""
     with open(bio_path, "r") as f:
         bio = json.load(f)
@@ -72,4 +77,15 @@ def load_athlete(bio_path, wearable_path, bloodwork_path, travel_path):
         bloodwork = json.load(f)
     with open(travel_path, "r") as f:
         travel = json.load(f)
-    return athleteprofile(bio, wearables, bloodwork, travel)
+
+    emg = {}
+    if emg_path:
+        with open(emg_path, "r") as f:
+            emg = json.load(f)
+
+    muscle_arch = {}
+    if muscle_arch_path:
+        with open(muscle_arch_path, "r") as f:
+            muscle_arch = json.load(f)
+
+    return athleteprofile(bio, wearables, bloodwork, travel, emg, muscle_arch)

@@ -223,3 +223,47 @@ intensity_mod_peaking = 0.98
 velocity_mod_hypertrophy = 0.85
 velocity_mod_strength = 0.92
 velocity_mod_peaking = 1.0
+
+# ---------------------------------------------------------------------------
+# biomechanics algorithms — temporal sequencing (algo 1)
+# ---------------------------------------------------------------------------
+# ref: hirashima et al. (2002) — sequential muscle activation
+optimal_interfire_delay_ms = 80.0
+interfire_tolerance_ms = 15.0
+energy_leakage_warning_threshold = 0.25
+
+# ---------------------------------------------------------------------------
+# biomechanics algorithms — block mechanics pinn (algo 2)
+# ---------------------------------------------------------------------------
+# ref: murakami et al. (2017) — front leg block kinetics
+max_tolerable_grf_bw_baseline = 3.5
+max_tolerable_grf_bw_ceiling = 6.5
+block_deceleration_time_min = 0.08
+block_deceleration_time_max = 0.20
+
+# ---------------------------------------------------------------------------
+# biomechanics algorithms — lever aerodynamic (algo 3)
+# ---------------------------------------------------------------------------
+# ref: hubbard & alaways (1987) — javelin flight mechanics
+min_release_angle_deg = 32.0
+max_release_angle_deg = 40.0
+min_attack_angle_deg = -2.0
+max_attack_angle_deg = 6.0
+
+# ---------------------------------------------------------------------------
+# biomechanics algorithms — power profiler (algo 4)
+# ---------------------------------------------------------------------------
+# ref: blazevich et al. (2006) — fascicle behavior
+rfd_threshold_crossover = 250.0
+min_fascicle_length_vl_cm = 8.5
+min_type_ii_pct_for_rfd = 55.0
+max_pennation_for_velocity = 25.0
+
+# ---------------------------------------------------------------------------
+# biomechanics algorithms — technique degradation (algo 5)
+# ---------------------------------------------------------------------------
+# ref: nybo & nielsen (2001) — hyperthermia and cns fatigue
+degradation_heat_index_baseline = 25.0
+degradation_heat_index_ceiling = 55.0
+degradation_mcmc_simulations = 500
+degradation_throws_per_session = 12

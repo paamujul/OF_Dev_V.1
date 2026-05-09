@@ -67,7 +67,7 @@ def simulate_metabolic_kinetics(time_minutes, initial_glucose, gb,
     peak_glucose = float(np.max(glucose_trajectory))
     peak_time = int(time_minutes[np.argmax(glucose_trajectory)])
 
-    glucose_auc = float(np.trapz(glucose_trajectory - gb, time_minutes))
+    glucose_auc = float(np.trapezoid(glucose_trajectory - gb, time_minutes))
 
     si = p3 / p2 if p2 > 0 else 0.0
 

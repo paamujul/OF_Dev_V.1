@@ -1,132 +1,67 @@
 """
-12-week mock telemetry generator for an elite male javelin thrower
+12-week hierarchical micro-exercise generator for an elite male javelin thrower.
 """
 
 import os
-import sys
 import json
 import numpy as np
 from datetime import datetime, timedelta
 
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from config.settings import (
-    max_squat_kg,
-    max_hang_clean_kg,
-    max_pullover_kg,
-    max_release_velocity_ms,
-    target_release_angle_deg,
-    target_attack_angle_deg,
-    target_runup_velocity_ms,
-    baseline_energy_transfer_wkg,
-    plyo_contacts_base,
-    plyo_contacts_strength,
-    plyo_contacts_taper,
-    intensity_mod_hypertrophy,
-    intensity_mod_strength,
-    intensity_mod_peaking,
-    velocity_mod_hypertrophy,
-    velocity_mod_strength,
-    velocity_mod_peaking,
-)
-
-
-def resolve_phase(week):
-    """returns periodization phase parameters for a given training week."""
-    if week <= 4:
+def resolve_phase(week_num):
+    """returns periodization parameters based on training week."""
+    if week_num <= 4:
         return {
             "name": "base_hypertrophy",
-            "intensity": intensity_mod_hypertrophy,
-            "velocity": velocity_mod_hypertrophy,
-            "plyo_mean": plyo_contacts_base,
-            "plyo_std": 10,
+            "intensity_mod": 0.80,
+            "acc_volume": "4x10",
+            "plyo_dist": {"depth jumps": 20, "pogo hops": 60, "broad jumps": 40},
         }
-    elif week <= 8:
+    elif week_num <= 8:
         return {
             "name": "maximal_strength",
-            "intensity": intensity_mod_strength,
-            "velocity": velocity_mod_strength,
-            "plyo_mean": plyo_contacts_strength,
-            "plyo_std": 8,
+            "intensity_mod": 0.90,
+            "acc_volume": "3x6",
+            "plyo_dist": {"depth jumps": 15, "pogo hops": 40, "broad jumps": 25},
         }
     return {
         "name": "peaking_taper",
-        "intensity": intensity_mod_peaking,
-        "velocity": velocity_mod_peaking,
-        "plyo_mean": plyo_contacts_taper,
-        "plyo_std": 5,
+        "intensity_mod": 0.98,
+        "acc_volume": "2x4",
+        "plyo_dist": {"depth jumps": 10, "pogo hops": 20, "broad jumps": 10},
     }
 
 
-def resolve_session(weekday):
-    """maps weekday index to session type."""
-    if weekday in [0, 2, 4]:
-        return "gym_cns_plyometrics"
-    elif weekday in [1, 3, 5]:
-        return "runway_technical"
-    return "recovery"
-
-
-def build_gym_record(phase, rng):
-    """generates gym session metrics scaled by periodization phase."""
-    daily_variance = rng.normal(1.0, 0.02)
-    plyo = int(rng.normal(phase["plyo_mean"], phase["plyo_std"]))
-
-    return {
-        "back_squat_working_max_kg": round(float(
-            max_squat_kg * phase["intensity"] * daily_variance
-        ), 1),
-        "hang_power_clean_working_max_kg": round(float(
-            max_hang_clean_kg * phase["intensity"] * daily_variance
-        ), 1),
-        "pullover_working_max_kg": round(float(
-            max_pullover_kg * phase["intensity"] * daily_variance
-        ), 1),
-        "plyometric_foot_contacts": max(0, plyo),
-    }
-
-
-def build_kinematic_record(phase, rng):
-    """generates runway kinematic metrics scaled by velocity modifier."""
-    daily_variance = rng.normal(1.0, 0.015)
-    vel = phase["velocity"]
-
-    energy_transfer = round(float(
-        rng.normal(baseline_energy_transfer_wkg * vel, 2.5)
+def build_lift_hierarchy(lift_key, baselines, phase, daily_variance):
+    """generates micro payloads for a given lift key based on periodization phase."""
+    intensity_mod = phase["intensity_mod"]
+    primary_weight = round(float(
+        baselines[lift_key]["primary"] * intensity_mod * daily_variance
     ), 1)
 
-    return {
-        "runup_velocity_cross_steps_ms": round(float(
-            rng.normal(target_runup_velocity_ms * vel, 0.2)
-        ), 2),
-        "thorax_humerus_energy_transfer_rate_wkg": energy_transfer,
-        "peak_release_velocity_ms": round(float(
-            max_release_velocity_ms * vel * daily_variance
-        ), 2),
-        "avg_release_angle_deg": round(float(
-            rng.normal(target_release_angle_deg, 1.0)
-        ), 1),
-        "avg_attack_angle_deg": round(float(
-            rng.normal(target_attack_angle_deg, 0.5)
-        ), 1),
-    }
+    accessories = []
+    num_accessories = 2 if phase["name"] == "peaking_taper" else 3
 
-
-def build_readiness(week, rng):
-    """generates physiological readiness markers for a given day."""
-    hrv = float(np.clip(rng.normal(85, 8) + (week * 0.4), 40, 150))
-    score = float(np.clip(rng.normal(80, 10) + (week * 0.5), 0, 100))
+    for acc in baselines[lift_key]["accessories"][:num_accessories]:
+        acc_weight = round(float(
+            baselines[lift_key]["primary"] * acc["ratio"] * intensity_mod * daily_variance
+        ), 1)
+        accessories.append({
+            "movement": acc["name"].lower(),
+            "working_weight_kg": acc_weight,
+            "prescribed_volume": phase["acc_volume"]
+        })
 
     return {
-        "morning_hrv_rmssd": round(hrv, 1),
-        "readiness_score_100": round(score, 1),
+        "primary_target_kg": primary_weight,
+        "compounding_accessories": accessories
     }
 
 
 def generate(start_date="2026-01-28", weeks=12, seed=42):
     """
     produces a 12-week daily telemetry stream for an elite male javelin thrower.
-    outputs structured json to data/mock/javelin_telemetry_12wk.json.
+    outputs structured json to data/mock/elite_javelin_micro_gym_data.json.
     """
     rng = np.random.default_rng(seed)
     days = weeks * 7
@@ -135,49 +70,84 @@ def generate(start_date="2026-01-28", weeks=12, seed=42):
         for i in range(days)
     ]
 
-    output = {
-        "metadata": {
-            "sport": "men's javelin",
-            "athlete_profile": "elite (80m+ potential)",
-            "generation_date": datetime.now().strftime("%Y-%m-%d"),
-            "weeks": weeks,
-            "seed": seed,
+    baselines = {
+        "back_squat": {
+            "primary": 190.0,
+            "accessories": [
+                {"name": "bulgarian split squat", "ratio": 0.45},
+                {"name": "leg press", "ratio": 1.2},
+                {"name": "weighted plank", "ratio": 0.25},
+            ]
         },
-        "telemetry_stream": [],
+        "hang_power_clean": {
+            "primary": 128.8,
+            "accessories": [
+                {"name": "romanian deadlift (rdl)", "ratio": 1.1},
+                {"name": "heavy kb swings", "ratio": 0.35},
+                {"name": "glute-ham raise", "ratio": 0.15},
+            ]
+        },
+        "pullover": {
+            "primary": 110.0,
+            "accessories": [
+                {"name": "lat pulldown", "ratio": 0.95},
+                {"name": "seated cable row", "ratio": 0.90},
+                {"name": "face pulls", "ratio": 0.30},
+            ]
+        }
     }
 
-    for i, current_date in enumerate(dates):
-        week = (i // 7) + 1
-        phase = resolve_phase(week)
-        session = resolve_session(current_date.weekday())
+    output_data = {"telemetry_stream": []}
 
-        record = {
+    for i, current_date in enumerate(dates):
+        week_num = (i // 7) + 1
+        phase = resolve_phase(week_num)
+
+        day_of_week = current_date.weekday()
+        if day_of_week in [0, 2, 4]:
+            session_type = "gym_cns_and_accessories"
+            daily_variance = float(rng.normal(1.0, 0.02))
+
+            gym_payload = {
+                "lower_body_push_complex": build_lift_hierarchy(
+                    "back_squat", baselines, phase, daily_variance
+                ),
+                "posterior_chain_explosive_complex": build_lift_hierarchy(
+                    "hang_power_clean", baselines, phase, daily_variance
+                ),
+                "thoracic_lat_complex": build_lift_hierarchy(
+                    "pullover", baselines, phase, daily_variance
+                ),
+                "plyometric_distribution": phase["plyo_dist"]
+            }
+        elif day_of_week in [1, 3, 5]:
+            session_type = "runway_technical"
+            gym_payload = None
+        else:
+            session_type = "recovery"
+            gym_payload = None
+
+        day_record = {
             "date": current_date.strftime("%Y-%m-%d"),
             "training_cycle": {
-                "week": week,
+                "week": week_num,
                 "periodization_phase": phase["name"],
-                "session_type": session,
+                "session_type": session_type
             },
-            "physiological_readiness": build_readiness(week, rng),
-            "gym_metrics": None,
-            "kinematic_metrics": None,
+            "gym_session_breakdown": gym_payload
         }
 
-        if session == "gym_cns_plyometrics":
-            record["gym_metrics"] = build_gym_record(phase, rng)
-        elif session == "runway_technical":
-            record["kinematic_metrics"] = build_kinematic_record(phase, rng)
-
-        output["telemetry_stream"].append(record)
+        output_data["telemetry_stream"].append(day_record)
 
     base = os.path.dirname(os.path.abspath(__file__))
-    output_path = os.path.join(base, "..", "mock", "javelin_telemetry_12wk.json")
-    output_path = os.path.normpath(output_path)
+    output_filename = os.path.join(base, "..", "mock", "elite_javelin_micro_gym_data.json")
+    output_filename = os.path.normpath(output_filename)
 
-    with open(output_path, "w") as f:
-        json.dump(output, f, indent=4)
+    with open(output_filename, "w") as outfile:
+        json.dump(output_data, outfile, indent=4)
 
-    return output
+    print(f"generated hierarchical micro-exercise json into '{output_filename}'")
+    return output_data
 
 
 if __name__ == "__main__":

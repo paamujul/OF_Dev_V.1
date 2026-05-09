@@ -14,5 +14,15 @@
   "training_status": "elite",
   "heat_acclimation_status": "partial",
   "days_at_destination": 0,
-  "tmin_hour": 5.0
+  "tmin_hour": 5.0,
+  "lean_body_mass_kg": 70.5,
+  "body_fat_percent": 14.0,
+  "bmd_g_cm2": 1.32,
+  "biacromial_breadth_cm": 42.5,
+  "arm_length_cm": 78.0,
+  "forearm_length_cm": 27.5,
+  "torso_length_cm": 52.0,
+  "hand_length_cm": 20.5,
+  "shoulder_to_elbow_cm": 35.0,
+  "elbow_to_wrist_cm": 27.5
 }

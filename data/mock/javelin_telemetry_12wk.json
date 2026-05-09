@@ -4,15 +4,7 @@
         "athlete_profile": "elite (80m+ potential)",
         "generation_date": "2026-04-22",
         "weeks": 12,
-        "seed": 42,
-        "citations": [
-            "hubbard et al. \u2014 release parameter contributions to new-rules javelin throwing",
-            "makino et al. (2023) \u2014 kinematic contribution to javelin velocity at different run-up velocities",
-            "pmc10516106 (2023) \u2014 energy flow in men's javelin throw and its relationship to joint load",
-            "pmc10690512 (2023) \u2014 effects of expertise on muscle activity during the hang power clean",
-            "ijisrt (2025) \u2014 the effect of plyometric training on ability javelin throw",
-            "bartonietz (2000) \u2014 javelin throwing: an approach to performance development"
-        ]
+        "seed": 42
     },
     "telemetry_stream": [
         {
@@ -23,14 +15,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 87.8,
-                "readiness_score_100": 70.1
+                "morning_hrv_rmssd": 87.8
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 154.3,
-                "hang_power_clean_working_max_kg": 104.6,
-                "pullover_working_max_kg": 89.3,
-                "plyometric_foot_contacts": 129
+                "back_squat_working_max_kg": 148.8,
+                "hang_power_clean_working_max_kg": 100.9,
+                "pullover_working_max_kg": 86.2,
+                "plyometric_foot_contacts": 127
             },
             "kinematic_metrics": null
         },
@@ -42,16 +33,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 69.8,
-                "readiness_score_100": 67.5
+                "morning_hrv_rmssd": 92.9
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.46,
-                "thorax_humerus_energy_transfer_rate_wkg": 29.0,
-                "peak_release_velocity_ms": 26.83,
-                "avg_release_angle_deg": 35.1,
-                "avg_attack_angle_deg": 2.4
+                "runup_velocity_cross_steps_ms": 6.49,
+                "thorax_humerus_energy_transfer_rate_wkg": 26.5,
+                "peak_release_velocity_ms": 25.99,
+                "avg_release_angle_deg": 35.7,
+                "avg_attack_angle_deg": 2.0
             }
         },
         {
@@ -62,14 +52,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 91.6,
-                "readiness_score_100": 81.2
+                "morning_hrv_rmssd": 78.6
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 155.4,
-                "hang_power_clean_working_max_kg": 105.4,
-                "pullover_working_max_kg": 90.0,
-                "plyometric_foot_contacts": 124
+                "back_squat_working_max_kg": 154.7,
+                "hang_power_clean_working_max_kg": 104.9,
+                "pullover_working_max_kg": 89.5,
+                "plyometric_foot_contacts": 127
             },
             "kinematic_metrics": null
         },
@@ -81,16 +70,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 78.5,
-                "readiness_score_100": 84.2
+                "morning_hrv_rmssd": 85.9
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.45,
-                "thorax_humerus_energy_transfer_rate_wkg": 31.9,
-                "peak_release_velocity_ms": 26.39,
-                "avg_release_angle_deg": 35.8,
-                "avg_attack_angle_deg": 1.7
+                "runup_velocity_cross_steps_ms": 6.29,
+                "thorax_humerus_energy_transfer_rate_wkg": 30.9,
+                "peak_release_velocity_ms": 27.23,
+                "avg_release_angle_deg": 36.4,
+                "avg_attack_angle_deg": 1.5
             }
         },
         {
@@ -101,8 +89,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 95.2,
-                "readiness_score_100": 79.0
+                "morning_hrv_rmssd": 92.4
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -115,14 +102,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 82.0,
-                "readiness_score_100": 77.0
+                "morning_hrv_rmssd": 85.0
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 153.6,
-                "hang_power_clean_working_max_kg": 104.1,
-                "pullover_working_max_kg": 88.9,
-                "plyometric_foot_contacts": 123
+                "back_squat_working_max_kg": 151.4,
+                "hang_power_clean_working_max_kg": 102.7,
+                "pullover_working_max_kg": 87.7,
+                "plyometric_foot_contacts": 113
             },
             "kinematic_metrics": null
         },
@@ -134,16 +120,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 88.7,
-                "readiness_score_100": 84.8
+                "morning_hrv_rmssd": 95.2
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.36,
+                "runup_velocity_cross_steps_ms": 6.39,
                 "thorax_humerus_energy_transfer_rate_wkg": 28.7,
-                "peak_release_velocity_ms": 27.64,
-                "avg_release_angle_deg": 35.2,
-                "avg_attack_angle_deg": 2.3
+                "peak_release_velocity_ms": 26.71,
+                "avg_release_angle_deg": 36.5,
+                "avg_attack_angle_deg": 2.2
             }
         },
         {
@@ -154,14 +139,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 94.8,
-                "readiness_score_100": 79.9
+                "morning_hrv_rmssd": 89.1
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 149.4,
-                "hang_power_clean_working_max_kg": 101.3,
-                "pullover_working_max_kg": 86.5,
-                "plyometric_foot_contacts": 111
+                "back_squat_working_max_kg": 153.3,
+                "hang_power_clean_working_max_kg": 103.9,
+                "pullover_working_max_kg": 88.8,
+                "plyometric_foot_contacts": 141
             },
             "kinematic_metrics": null
         },
@@ -173,16 +157,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 91.0,
-                "readiness_score_100": 88.4
+                "morning_hrv_rmssd": 82.5
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.51,
-                "thorax_humerus_energy_transfer_rate_wkg": 28.1,
-                "peak_release_velocity_ms": 26.99,
-                "avg_release_angle_deg": 36.1,
-                "avg_attack_angle_deg": 2.1
+                "runup_velocity_cross_steps_ms": 6.58,
+                "thorax_humerus_energy_transfer_rate_wkg": 27.7,
+                "peak_release_velocity_ms": 26.57,
+                "avg_release_angle_deg": 37.1,
+                "avg_attack_angle_deg": 1.9
             }
         },
         {
@@ -193,14 +176,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 92.8,
-                "readiness_score_100": 83.2
+                "morning_hrv_rmssd": 79.1
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 154.1,
-                "hang_power_clean_working_max_kg": 104.4,
-                "pullover_working_max_kg": 89.2,
-                "plyometric_foot_contacts": 120
+                "back_squat_working_max_kg": 149.5,
+                "hang_power_clean_working_max_kg": 101.3,
+                "pullover_working_max_kg": 86.5,
+                "plyometric_foot_contacts": 126
             },
             "kinematic_metrics": null
         },
@@ -212,16 +194,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 88.1,
-                "readiness_score_100": 87.3
+                "morning_hrv_rmssd": 91.7
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.37,
-                "thorax_humerus_energy_transfer_rate_wkg": 29.0,
-                "peak_release_velocity_ms": 26.19,
-                "avg_release_angle_deg": 35.4,
-                "avg_attack_angle_deg": 1.9
+                "runup_velocity_cross_steps_ms": 6.51,
+                "thorax_humerus_energy_transfer_rate_wkg": 28.1,
+                "peak_release_velocity_ms": 26.99,
+                "avg_release_angle_deg": 36.1,
+                "avg_attack_angle_deg": 2.1
             }
         },
         {
@@ -232,8 +213,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 97.8,
-                "readiness_score_100": 72.3
+                "morning_hrv_rmssd": 92.8
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -246,14 +226,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 93.5,
-                "readiness_score_100": 64.2
+                "morning_hrv_rmssd": 87.6
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 151.0,
-                "hang_power_clean_working_max_kg": 102.3,
-                "pullover_working_max_kg": 87.4,
-                "plyometric_foot_contacts": 121
+                "back_squat_working_max_kg": 154.1,
+                "hang_power_clean_working_max_kg": 104.4,
+                "pullover_working_max_kg": 89.2,
+                "plyometric_foot_contacts": 120
             },
             "kinematic_metrics": null
         },
@@ -265,16 +244,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 90.5,
-                "readiness_score_100": 88.1
+                "morning_hrv_rmssd": 88.1
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.37,
-                "thorax_humerus_energy_transfer_rate_wkg": 28.9,
-                "peak_release_velocity_ms": 27.09,
-                "avg_release_angle_deg": 36.9,
-                "avg_attack_angle_deg": 1.9
+                "runup_velocity_cross_steps_ms": 6.4,
+                "thorax_humerus_energy_transfer_rate_wkg": 26.1,
+                "peak_release_velocity_ms": 27.03,
+                "avg_release_angle_deg": 35.5,
+                "avg_attack_angle_deg": 1.7
             }
         },
         {
@@ -285,14 +263,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 76.0,
-                "readiness_score_100": 70.2
+                "morning_hrv_rmssd": 84.0
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 149.2,
-                "hang_power_clean_working_max_kg": 101.1,
-                "pullover_working_max_kg": 86.4,
-                "plyometric_foot_contacts": 124
+                "back_squat_working_max_kg": 156.5,
+                "hang_power_clean_working_max_kg": 106.1,
+                "pullover_working_max_kg": 90.6,
+                "plyometric_foot_contacts": 111
             },
             "kinematic_metrics": null
         },
@@ -304,16 +281,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 87.3,
-                "readiness_score_100": 88.4
+                "morning_hrv_rmssd": 93.9
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.59,
-                "thorax_humerus_energy_transfer_rate_wkg": 30.1,
-                "peak_release_velocity_ms": 26.6,
-                "avg_release_angle_deg": 35.7,
-                "avg_attack_angle_deg": 2.2
+                "runup_velocity_cross_steps_ms": 6.49,
+                "thorax_humerus_energy_transfer_rate_wkg": 28.9,
+                "peak_release_velocity_ms": 26.1,
+                "avg_release_angle_deg": 36.6,
+                "avg_attack_angle_deg": 2.4
             }
         },
         {
@@ -324,14 +300,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 80.9,
-                "readiness_score_100": 77.9
+                "morning_hrv_rmssd": 92.5
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 150.8,
+                "back_squat_working_max_kg": 150.9,
                 "hang_power_clean_working_max_kg": 102.3,
-                "pullover_working_max_kg": 87.3,
-                "plyometric_foot_contacts": 108
+                "pullover_working_max_kg": 87.4,
+                "plyometric_foot_contacts": 115
             },
             "kinematic_metrics": null
         },
@@ -343,16 +318,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 90.1,
-                "readiness_score_100": 76.8
+                "morning_hrv_rmssd": 93.1
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.55,
-                "thorax_humerus_energy_transfer_rate_wkg": 31.0,
-                "peak_release_velocity_ms": 26.78,
-                "avg_release_angle_deg": 36.7,
-                "avg_attack_angle_deg": 2.0
+                "runup_velocity_cross_steps_ms": 6.23,
+                "thorax_humerus_energy_transfer_rate_wkg": 26.6,
+                "peak_release_velocity_ms": 26.7,
+                "avg_release_angle_deg": 35.1,
+                "avg_attack_angle_deg": 2.2
             }
         },
         {
@@ -363,8 +337,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 82.8,
-                "readiness_score_100": 80.7
+                "morning_hrv_rmssd": 87.3
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -377,14 +350,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 72.7,
-                "readiness_score_100": 67.0
+                "morning_hrv_rmssd": 91.7
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 148.0,
-                "hang_power_clean_working_max_kg": 100.3,
-                "pullover_working_max_kg": 85.7,
-                "plyometric_foot_contacts": 110
+                "back_squat_working_max_kg": 150.7,
+                "hang_power_clean_working_max_kg": 102.2,
+                "pullover_working_max_kg": 87.2,
+                "plyometric_foot_contacts": 121
             },
             "kinematic_metrics": null
         },
@@ -396,16 +368,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 89.4,
-                "readiness_score_100": 72.4
+                "morning_hrv_rmssd": 91.2
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.39,
-                "thorax_humerus_energy_transfer_rate_wkg": 33.0,
-                "peak_release_velocity_ms": 26.62,
-                "avg_release_angle_deg": 36.7,
-                "avg_attack_angle_deg": 1.5
+                "runup_velocity_cross_steps_ms": 6.33,
+                "thorax_humerus_energy_transfer_rate_wkg": 30.9,
+                "peak_release_velocity_ms": 26.65,
+                "avg_release_angle_deg": 35.6,
+                "avg_attack_angle_deg": 1.8
             }
         },
         {
@@ -416,14 +387,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 85.0,
-                "readiness_score_100": 72.5
+                "morning_hrv_rmssd": 77.0
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 151.0,
-                "hang_power_clean_working_max_kg": 102.3,
-                "pullover_working_max_kg": 87.4,
-                "plyometric_foot_contacts": 128
+                "back_squat_working_max_kg": 153.5,
+                "hang_power_clean_working_max_kg": 104.0,
+                "pullover_working_max_kg": 88.9,
+                "plyometric_foot_contacts": 115
             },
             "kinematic_metrics": null
         },
@@ -435,16 +405,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 72.8,
-                "readiness_score_100": 86.3
+                "morning_hrv_rmssd": 86.7
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.17,
-                "thorax_humerus_energy_transfer_rate_wkg": 28.3,
-                "peak_release_velocity_ms": 26.87,
-                "avg_release_angle_deg": 36.1,
-                "avg_attack_angle_deg": 1.7
+                "runup_velocity_cross_steps_ms": 6.59,
+                "thorax_humerus_energy_transfer_rate_wkg": 30.9,
+                "peak_release_velocity_ms": 26.97,
+                "avg_release_angle_deg": 35.9,
+                "avg_attack_angle_deg": 1.8
             }
         },
         {
@@ -455,14 +424,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 88.5,
-                "readiness_score_100": 82.2
+                "morning_hrv_rmssd": 86.0
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 156.9,
-                "hang_power_clean_working_max_kg": 106.3,
-                "pullover_working_max_kg": 90.8,
-                "plyometric_foot_contacts": 117
+                "back_squat_working_max_kg": 146.9,
+                "hang_power_clean_working_max_kg": 99.6,
+                "pullover_working_max_kg": 85.0,
+                "plyometric_foot_contacts": 105
             },
             "kinematic_metrics": null
         },
@@ -474,16 +442,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 78.4,
-                "readiness_score_100": 83.8
+                "morning_hrv_rmssd": 76.0
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.63,
-                "thorax_humerus_energy_transfer_rate_wkg": 33.1,
-                "peak_release_velocity_ms": 26.86,
-                "avg_release_angle_deg": 36.4,
-                "avg_attack_angle_deg": 2.7
+                "runup_velocity_cross_steps_ms": 6.28,
+                "thorax_humerus_energy_transfer_rate_wkg": 30.7,
+                "peak_release_velocity_ms": 26.37,
+                "avg_release_angle_deg": 35.6,
+                "avg_attack_angle_deg": 2.6
             }
         },
         {
@@ -494,8 +461,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 77.1,
-                "readiness_score_100": 75.6
+                "morning_hrv_rmssd": 83.7
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -508,14 +474,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 79.2,
-                "readiness_score_100": 78.1
+                "morning_hrv_rmssd": 92.5
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 147.8,
-                "hang_power_clean_working_max_kg": 100.2,
-                "pullover_working_max_kg": 85.6,
-                "plyometric_foot_contacts": 126
+                "back_squat_working_max_kg": 149.2,
+                "hang_power_clean_working_max_kg": 101.1,
+                "pullover_working_max_kg": 86.4,
+                "plyometric_foot_contacts": 117
             },
             "kinematic_metrics": null
         },
@@ -527,16 +492,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 84.8,
-                "readiness_score_100": 67.3
+                "morning_hrv_rmssd": 79.0
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.63,
-                "thorax_humerus_energy_transfer_rate_wkg": 30.5,
-                "peak_release_velocity_ms": 26.37,
-                "avg_release_angle_deg": 38.0,
-                "avg_attack_angle_deg": 3.5
+                "runup_velocity_cross_steps_ms": 6.11,
+                "thorax_humerus_energy_transfer_rate_wkg": 31.9,
+                "peak_release_velocity_ms": 26.64,
+                "avg_release_angle_deg": 36.4,
+                "avg_attack_angle_deg": 2.1
             }
         },
         {
@@ -547,14 +511,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 90.3,
-                "readiness_score_100": 72.6
+                "morning_hrv_rmssd": 82.2
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 163.7,
-                "hang_power_clean_working_max_kg": 111.0,
-                "pullover_working_max_kg": 94.8,
-                "plyometric_foot_contacts": 82
+                "back_squat_working_max_kg": 166.1,
+                "hang_power_clean_working_max_kg": 112.6,
+                "pullover_working_max_kg": 96.1,
+                "plyometric_foot_contacts": 80
             },
             "kinematic_metrics": null
         },
@@ -566,16 +529,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 80.5,
-                "readiness_score_100": 78.3
+                "morning_hrv_rmssd": 82.8
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.21,
-                "thorax_humerus_energy_transfer_rate_wkg": 31.8,
-                "peak_release_velocity_ms": 28.71,
-                "avg_release_angle_deg": 36.2,
-                "avg_attack_angle_deg": 1.9
+                "runup_velocity_cross_steps_ms": 7.31,
+                "thorax_humerus_energy_transfer_rate_wkg": 32.3,
+                "peak_release_velocity_ms": 29.08,
+                "avg_release_angle_deg": 35.8,
+                "avg_attack_angle_deg": 1.5
             }
         },
         {
@@ -586,14 +548,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 78.7,
-                "readiness_score_100": 65.8
+                "morning_hrv_rmssd": 88.4
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 169.3,
-                "hang_power_clean_working_max_kg": 114.8,
-                "pullover_working_max_kg": 98.0,
-                "plyometric_foot_contacts": 79
+                "back_squat_working_max_kg": 171.8,
+                "hang_power_clean_working_max_kg": 116.4,
+                "pullover_working_max_kg": 99.4,
+                "plyometric_foot_contacts": 90
             },
             "kinematic_metrics": null
         },
@@ -605,16 +566,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 101.1,
-                "readiness_score_100": 83.8
+                "morning_hrv_rmssd": 93.7
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.76,
-                "thorax_humerus_energy_transfer_rate_wkg": 31.0,
-                "peak_release_velocity_ms": 29.41,
-                "avg_release_angle_deg": 35.0,
-                "avg_attack_angle_deg": 1.6
+                "runup_velocity_cross_steps_ms": 6.75,
+                "thorax_humerus_energy_transfer_rate_wkg": 35.9,
+                "peak_release_velocity_ms": 29.14,
+                "avg_release_angle_deg": 35.4,
+                "avg_attack_angle_deg": 1.5
             }
         },
         {
@@ -625,8 +585,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 104.0,
-                "readiness_score_100": 74.3
+                "morning_hrv_rmssd": 83.9
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -639,14 +598,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 93.7,
-                "readiness_score_100": 73.5
+                "morning_hrv_rmssd": 76.0
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 174.2,
-                "hang_power_clean_working_max_kg": 118.1,
-                "pullover_working_max_kg": 100.8,
-                "plyometric_foot_contacts": 83
+                "back_squat_working_max_kg": 173.2,
+                "hang_power_clean_working_max_kg": 117.4,
+                "pullover_working_max_kg": 100.3,
+                "plyometric_foot_contacts": 78
             },
             "kinematic_metrics": null
         },
@@ -658,16 +616,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 85.7,
-                "readiness_score_100": 82.1
+                "morning_hrv_rmssd": 75.2
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.9,
-                "thorax_humerus_energy_transfer_rate_wkg": 33.3,
-                "peak_release_velocity_ms": 28.7,
-                "avg_release_angle_deg": 34.8,
-                "avg_attack_angle_deg": 1.4
+                "runup_velocity_cross_steps_ms": 7.16,
+                "thorax_humerus_energy_transfer_rate_wkg": 33.0,
+                "peak_release_velocity_ms": 28.54,
+                "avg_release_angle_deg": 38.0,
+                "avg_attack_angle_deg": 3.5
             }
         },
         {
@@ -678,14 +635,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 88.8,
-                "readiness_score_100": 98.8
+                "morning_hrv_rmssd": 90.7
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 171.5,
-                "hang_power_clean_working_max_kg": 116.3,
-                "pullover_working_max_kg": 99.3,
-                "plyometric_foot_contacts": 79
+                "back_squat_working_max_kg": 167.6,
+                "hang_power_clean_working_max_kg": 113.6,
+                "pullover_working_max_kg": 97.0,
+                "plyometric_foot_contacts": 62
             },
             "kinematic_metrics": null
         },
@@ -697,16 +653,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 89.7,
-                "readiness_score_100": 96.1
+                "morning_hrv_rmssd": 89.5
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.21,
+                "runup_velocity_cross_steps_ms": 6.87,
                 "thorax_humerus_energy_transfer_rate_wkg": 31.2,
-                "peak_release_velocity_ms": 29.08,
-                "avg_release_angle_deg": 36.4,
-                "avg_attack_angle_deg": 2.8
+                "peak_release_velocity_ms": 28.63,
+                "avg_release_angle_deg": 35.9,
+                "avg_attack_angle_deg": 2.5
             }
         },
         {
@@ -717,14 +672,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 88.9,
-                "readiness_score_100": 70.8
+                "morning_hrv_rmssd": 88.7
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 166.3,
-                "hang_power_clean_working_max_kg": 112.7,
-                "pullover_working_max_kg": 96.3,
-                "plyometric_foot_contacts": 93
+                "back_squat_working_max_kg": 170.5,
+                "hang_power_clean_working_max_kg": 115.6,
+                "pullover_working_max_kg": 98.7,
+                "plyometric_foot_contacts": 71
             },
             "kinematic_metrics": null
         },
@@ -736,16 +690,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 101.2,
-                "readiness_score_100": 81.2
+                "morning_hrv_rmssd": 74.0
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.77,
-                "thorax_humerus_energy_transfer_rate_wkg": 35.9,
-                "peak_release_velocity_ms": 28.81,
-                "avg_release_angle_deg": 35.1,
-                "avg_attack_angle_deg": 2.3
+                "runup_velocity_cross_steps_ms": 7.35,
+                "thorax_humerus_energy_transfer_rate_wkg": 32.1,
+                "peak_release_velocity_ms": 28.77,
+                "avg_release_angle_deg": 36.1,
+                "avg_attack_angle_deg": 2.5
             }
         },
         {
@@ -756,8 +709,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 84.2,
-                "readiness_score_100": 82.9
+                "morning_hrv_rmssd": 83.4
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -770,14 +722,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 86.1,
-                "readiness_score_100": 86.4
+                "morning_hrv_rmssd": 77.9
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 175.8,
-                "hang_power_clean_working_max_kg": 119.2,
-                "pullover_working_max_kg": 101.8,
-                "plyometric_foot_contacts": 80
+                "back_squat_working_max_kg": 167.7,
+                "hang_power_clean_working_max_kg": 113.7,
+                "pullover_working_max_kg": 97.1,
+                "plyometric_foot_contacts": 74
             },
             "kinematic_metrics": null
         },
@@ -789,16 +740,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 92.6,
-                "readiness_score_100": 62.5
+                "morning_hrv_rmssd": 104.4
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.75,
-                "thorax_humerus_energy_transfer_rate_wkg": 30.1,
-                "peak_release_velocity_ms": 28.96,
-                "avg_release_angle_deg": 35.1,
-                "avg_attack_angle_deg": 1.8
+                "runup_velocity_cross_steps_ms": 6.81,
+                "thorax_humerus_energy_transfer_rate_wkg": 34.3,
+                "peak_release_velocity_ms": 28.62,
+                "avg_release_angle_deg": 36.9,
+                "avg_attack_angle_deg": 2.2
             }
         },
         {
@@ -809,14 +759,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 95.1,
-                "readiness_score_100": 70.2
+                "morning_hrv_rmssd": 86.5
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 171.1,
-                "hang_power_clean_working_max_kg": 116.0,
-                "pullover_working_max_kg": 99.1,
-                "plyometric_foot_contacts": 76
+                "back_squat_working_max_kg": 170.9,
+                "hang_power_clean_working_max_kg": 115.8,
+                "pullover_working_max_kg": 98.9,
+                "plyometric_foot_contacts": 74
             },
             "kinematic_metrics": null
         },
@@ -828,16 +777,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 85.2,
-                "readiness_score_100": 93.5
+                "morning_hrv_rmssd": 91.4
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.96,
-                "thorax_humerus_energy_transfer_rate_wkg": 35.5,
-                "peak_release_velocity_ms": 29.21,
-                "avg_release_angle_deg": 35.3,
-                "avg_attack_angle_deg": 1.9
+                "runup_velocity_cross_steps_ms": 6.74,
+                "thorax_humerus_energy_transfer_rate_wkg": 29.1,
+                "peak_release_velocity_ms": 28.78,
+                "avg_release_angle_deg": 36.2,
+                "avg_attack_angle_deg": 2.8
             }
         },
         {
@@ -848,14 +796,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 89.7,
-                "readiness_score_100": 85.3
+                "morning_hrv_rmssd": 89.1
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 167.3,
-                "hang_power_clean_working_max_kg": 113.4,
-                "pullover_working_max_kg": 96.9,
-                "plyometric_foot_contacts": 80
+                "back_squat_working_max_kg": 170.6,
+                "hang_power_clean_working_max_kg": 115.6,
+                "pullover_working_max_kg": 98.8,
+                "plyometric_foot_contacts": 82
             },
             "kinematic_metrics": null
         },
@@ -867,16 +814,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 89.6,
-                "readiness_score_100": 100.0
+                "morning_hrv_rmssd": 98.2
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.93,
-                "thorax_humerus_energy_transfer_rate_wkg": 30.1,
-                "peak_release_velocity_ms": 29.8,
-                "avg_release_angle_deg": 34.5,
-                "avg_attack_angle_deg": 1.7
+                "runup_velocity_cross_steps_ms": 7.21,
+                "thorax_humerus_energy_transfer_rate_wkg": 31.2,
+                "peak_release_velocity_ms": 29.08,
+                "avg_release_angle_deg": 36.4,
+                "avg_attack_angle_deg": 2.8
             }
         },
         {
@@ -887,8 +833,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 90.3,
-                "readiness_score_100": 95.6
+                "morning_hrv_rmssd": 89.3
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -901,14 +846,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 82.0,
-                "readiness_score_100": 77.0
+                "morning_hrv_rmssd": 78.0
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 163.7,
-                "hang_power_clean_working_max_kg": 110.9,
-                "pullover_working_max_kg": 94.7,
-                "plyometric_foot_contacts": 78
+                "back_squat_working_max_kg": 166.3,
+                "hang_power_clean_working_max_kg": 112.7,
+                "pullover_working_max_kg": 96.3,
+                "plyometric_foot_contacts": 93
             },
             "kinematic_metrics": null
         },
@@ -920,16 +864,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 79.3,
-                "readiness_score_100": 78.2
+                "morning_hrv_rmssd": 101.6
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.64,
-                "thorax_humerus_energy_transfer_rate_wkg": 32.0,
-                "peak_release_velocity_ms": 28.6,
-                "avg_release_angle_deg": 34.5,
-                "avg_attack_angle_deg": 3.1
+                "runup_velocity_cross_steps_ms": 7.28,
+                "thorax_humerus_energy_transfer_rate_wkg": 31.2,
+                "peak_release_velocity_ms": 28.9,
+                "avg_release_angle_deg": 34.9,
+                "avg_attack_angle_deg": 1.6
             }
         },
         {
@@ -940,14 +883,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 77.9,
-                "readiness_score_100": 73.0
+                "morning_hrv_rmssd": 93.3
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 177.3,
-                "hang_power_clean_working_max_kg": 120.2,
-                "pullover_working_max_kg": 102.6,
-                "plyometric_foot_contacts": 103
+                "back_squat_working_max_kg": 169.7,
+                "hang_power_clean_working_max_kg": 115.0,
+                "pullover_working_max_kg": 98.2,
+                "plyometric_foot_contacts": 79
             },
             "kinematic_metrics": null
         },
@@ -959,16 +901,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 78.8,
-                "readiness_score_100": 80.3
+                "morning_hrv_rmssd": 86.9
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.79,
-                "thorax_humerus_energy_transfer_rate_wkg": 36.5,
+                "runup_velocity_cross_steps_ms": 7.01,
+                "thorax_humerus_energy_transfer_rate_wkg": 35.7,
                 "peak_release_velocity_ms": 29.13,
-                "avg_release_angle_deg": 35.8,
-                "avg_attack_angle_deg": 2.4
+                "avg_release_angle_deg": 36.6,
+                "avg_attack_angle_deg": 1.0
             }
         },
         {
@@ -979,14 +920,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 91.7,
-                "readiness_score_100": 80.2
+                "morning_hrv_rmssd": 87.8
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 170.5,
-                "hang_power_clean_working_max_kg": 115.6,
-                "pullover_working_max_kg": 98.7,
-                "plyometric_foot_contacts": 69
+                "back_squat_working_max_kg": 168.1,
+                "hang_power_clean_working_max_kg": 114.0,
+                "pullover_working_max_kg": 97.3,
+                "plyometric_foot_contacts": 70
             },
             "kinematic_metrics": null
         },
@@ -998,16 +938,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 86.3,
-                "readiness_score_100": 81.3
+                "morning_hrv_rmssd": 81.2
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.09,
-                "thorax_humerus_energy_transfer_rate_wkg": 30.8,
-                "peak_release_velocity_ms": 29.08,
-                "avg_release_angle_deg": 37.0,
-                "avg_attack_angle_deg": 2.1
+                "runup_velocity_cross_steps_ms": 6.73,
+                "thorax_humerus_energy_transfer_rate_wkg": 34.5,
+                "peak_release_velocity_ms": 28.83,
+                "avg_release_angle_deg": 36.0,
+                "avg_attack_angle_deg": 1.8
             }
         },
         {
@@ -1018,8 +957,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 91.0,
-                "readiness_score_100": 84.5
+                "morning_hrv_rmssd": 85.6
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -1032,14 +970,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 88.2,
-                "readiness_score_100": 76.8
+                "morning_hrv_rmssd": 96.2
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 172.1,
-                "hang_power_clean_working_max_kg": 116.7,
-                "pullover_working_max_kg": 99.6,
-                "plyometric_foot_contacts": 79
+                "back_squat_working_max_kg": 172.8,
+                "hang_power_clean_working_max_kg": 117.2,
+                "pullover_working_max_kg": 100.1,
+                "plyometric_foot_contacts": 90
             },
             "kinematic_metrics": null
         },
@@ -1051,16 +988,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 104.9,
-                "readiness_score_100": 99.7
+                "morning_hrv_rmssd": 87.0
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 6.77,
-                "thorax_humerus_energy_transfer_rate_wkg": 30.3,
-                "peak_release_velocity_ms": 29.15,
-                "avg_release_angle_deg": 37.2,
-                "avg_attack_angle_deg": 2.1
+                "runup_velocity_cross_steps_ms": 7.04,
+                "thorax_humerus_energy_transfer_rate_wkg": 31.6,
+                "peak_release_velocity_ms": 28.68,
+                "avg_release_angle_deg": 36.2,
+                "avg_attack_angle_deg": 1.5
             }
         },
         {
@@ -1071,14 +1007,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 92.4,
-                "readiness_score_100": 67.1
+                "morning_hrv_rmssd": 89.3
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 189.7,
-                "hang_power_clean_working_max_kg": 128.6,
-                "pullover_working_max_kg": 109.8,
-                "plyometric_foot_contacts": 42
+                "back_squat_working_max_kg": 187.0,
+                "hang_power_clean_working_max_kg": 126.8,
+                "pullover_working_max_kg": 108.3,
+                "plyometric_foot_contacts": 52
             },
             "kinematic_metrics": null
         },
@@ -1090,16 +1025,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 79.7,
-                "readiness_score_100": 79.8
+                "morning_hrv_rmssd": 103.6
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.54,
-                "thorax_humerus_energy_transfer_rate_wkg": 35.1,
-                "peak_release_velocity_ms": 31.62,
-                "avg_release_angle_deg": 35.9,
-                "avg_attack_angle_deg": 1.9
+                "runup_velocity_cross_steps_ms": 7.31,
+                "thorax_humerus_energy_transfer_rate_wkg": 34.3,
+                "peak_release_velocity_ms": 31.1,
+                "avg_release_angle_deg": 35.4,
+                "avg_attack_angle_deg": 2.2
             }
         },
         {
@@ -1110,14 +1044,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 89.8,
-                "readiness_score_100": 99.2
+                "morning_hrv_rmssd": 98.2
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 176.6,
-                "hang_power_clean_working_max_kg": 119.7,
-                "pullover_working_max_kg": 102.3,
-                "plyometric_foot_contacts": 38
+                "back_squat_working_max_kg": 183.5,
+                "hang_power_clean_working_max_kg": 124.4,
+                "pullover_working_max_kg": 106.2,
+                "plyometric_foot_contacts": 36
             },
             "kinematic_metrics": null
         },
@@ -1129,16 +1062,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 90.0,
-                "readiness_score_100": 87.5
+                "morning_hrv_rmssd": 71.4
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.67,
-                "thorax_humerus_energy_transfer_rate_wkg": 30.6,
-                "peak_release_velocity_ms": 31.32,
-                "avg_release_angle_deg": 37.7,
-                "avg_attack_angle_deg": 1.2
+                "runup_velocity_cross_steps_ms": 7.49,
+                "thorax_humerus_energy_transfer_rate_wkg": 32.3,
+                "peak_release_velocity_ms": 31.42,
+                "avg_release_angle_deg": 35.1,
+                "avg_attack_angle_deg": 2.0
             }
         },
         {
@@ -1149,8 +1081,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 95.5,
-                "readiness_score_100": 81.2
+                "morning_hrv_rmssd": 74.5
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -1163,14 +1094,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 88.1,
-                "readiness_score_100": 74.0
+                "morning_hrv_rmssd": 76.9
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 185.0,
-                "hang_power_clean_working_max_kg": 125.4,
-                "pullover_working_max_kg": 107.1,
-                "plyometric_foot_contacts": 46
+                "back_squat_working_max_kg": 194.1,
+                "hang_power_clean_working_max_kg": 131.6,
+                "pullover_working_max_kg": 112.4,
+                "plyometric_foot_contacts": 33
             },
             "kinematic_metrics": null
         },
@@ -1182,16 +1112,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 93.3,
-                "readiness_score_100": 100.0
+                "morning_hrv_rmssd": 79.8
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.95,
-                "thorax_humerus_energy_transfer_rate_wkg": 36.1,
-                "peak_release_velocity_ms": 32.06,
-                "avg_release_angle_deg": 36.4,
-                "avg_attack_angle_deg": 2.4
+                "runup_velocity_cross_steps_ms": 7.37,
+                "thorax_humerus_energy_transfer_rate_wkg": 42.3,
+                "peak_release_velocity_ms": 32.37,
+                "avg_release_angle_deg": 35.6,
+                "avg_attack_angle_deg": 2.2
             }
         },
         {
@@ -1202,14 +1131,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 86.6,
-                "readiness_score_100": 85.7
+                "morning_hrv_rmssd": 102.8
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 183.6,
-                "hang_power_clean_working_max_kg": 124.5,
-                "pullover_working_max_kg": 106.3,
-                "plyometric_foot_contacts": 44
+                "back_squat_working_max_kg": 182.5,
+                "hang_power_clean_working_max_kg": 123.7,
+                "pullover_working_max_kg": 105.7,
+                "plyometric_foot_contacts": 38
             },
             "kinematic_metrics": null
         },
@@ -1221,16 +1149,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 79.6,
-                "readiness_score_100": 92.8
+                "morning_hrv_rmssd": 95.2
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.75,
-                "thorax_humerus_energy_transfer_rate_wkg": 37.9,
-                "peak_release_velocity_ms": 31.41,
-                "avg_release_angle_deg": 37.8,
-                "avg_attack_angle_deg": 2.4
+                "runup_velocity_cross_steps_ms": 7.57,
+                "thorax_humerus_energy_transfer_rate_wkg": 34.1,
+                "peak_release_velocity_ms": 31.71,
+                "avg_release_angle_deg": 34.6,
+                "avg_attack_angle_deg": 1.9
             }
         },
         {
@@ -1241,13 +1168,12 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 76.4,
-                "readiness_score_100": 84.3
+                "morning_hrv_rmssd": 86.9
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 181.8,
-                "hang_power_clean_working_max_kg": 123.3,
-                "pullover_working_max_kg": 105.3,
+                "back_squat_working_max_kg": 187.1,
+                "hang_power_clean_working_max_kg": 126.8,
+                "pullover_working_max_kg": 108.3,
                 "plyometric_foot_contacts": 37
             },
             "kinematic_metrics": null
@@ -1260,16 +1186,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 101.1,
-                "readiness_score_100": 91.4
+                "morning_hrv_rmssd": 92.8
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.61,
-                "thorax_humerus_energy_transfer_rate_wkg": 32.5,
-                "peak_release_velocity_ms": 31.17,
-                "avg_release_angle_deg": 34.8,
-                "avg_attack_angle_deg": 1.7
+                "runup_velocity_cross_steps_ms": 7.67,
+                "thorax_humerus_energy_transfer_rate_wkg": 35.4,
+                "peak_release_velocity_ms": 31.98,
+                "avg_release_angle_deg": 36.1,
+                "avg_attack_angle_deg": 2.0
             }
         },
         {
@@ -1280,8 +1205,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 91.5,
-                "readiness_score_100": 96.6
+                "morning_hrv_rmssd": 83.2
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -1294,14 +1218,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 93.9,
-                "readiness_score_100": 62.1
+                "morning_hrv_rmssd": 91.5
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 187.3,
-                "hang_power_clean_working_max_kg": 127.0,
-                "pullover_working_max_kg": 108.5,
-                "plyometric_foot_contacts": 40
+                "back_squat_working_max_kg": 185.8,
+                "hang_power_clean_working_max_kg": 126.0,
+                "pullover_working_max_kg": 107.6,
+                "plyometric_foot_contacts": 50
             },
             "kinematic_metrics": null
         },
@@ -1313,16 +1236,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 92.3,
-                "readiness_score_100": 100.0
+                "morning_hrv_rmssd": 101.6
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.72,
-                "thorax_humerus_energy_transfer_rate_wkg": 33.5,
-                "peak_release_velocity_ms": 30.53,
-                "avg_release_angle_deg": 34.4,
-                "avg_attack_angle_deg": 2.7
+                "runup_velocity_cross_steps_ms": 7.38,
+                "thorax_humerus_energy_transfer_rate_wkg": 33.1,
+                "peak_release_velocity_ms": 31.68,
+                "avg_release_angle_deg": 37.2,
+                "avg_attack_angle_deg": 2.1
             }
         },
         {
@@ -1333,13 +1255,12 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 92.3,
-                "readiness_score_100": 94.0
+                "morning_hrv_rmssd": 93.2
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 184.1,
-                "hang_power_clean_working_max_kg": 124.8,
-                "pullover_working_max_kg": 106.6,
+                "back_squat_working_max_kg": 179.7,
+                "hang_power_clean_working_max_kg": 121.8,
+                "pullover_working_max_kg": 104.0,
                 "plyometric_foot_contacts": 44
             },
             "kinematic_metrics": null
@@ -1352,15 +1273,14 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 97.9,
-                "readiness_score_100": 87.8
+                "morning_hrv_rmssd": 93.0
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.43,
-                "thorax_humerus_energy_transfer_rate_wkg": 35.7,
-                "peak_release_velocity_ms": 31.61,
-                "avg_release_angle_deg": 35.9,
+                "runup_velocity_cross_steps_ms": 7.65,
+                "thorax_humerus_energy_transfer_rate_wkg": 33.8,
+                "peak_release_velocity_ms": 30.98,
+                "avg_release_angle_deg": 36.1,
                 "avg_attack_angle_deg": 1.9
             }
         },
@@ -1372,14 +1292,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 92.5,
-                "readiness_score_100": 95.5
+                "morning_hrv_rmssd": 88.6
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 182.3,
-                "hang_power_clean_working_max_kg": 123.6,
-                "pullover_working_max_kg": 105.5,
-                "plyometric_foot_contacts": 39
+                "back_squat_working_max_kg": 185.3,
+                "hang_power_clean_working_max_kg": 125.6,
+                "pullover_working_max_kg": 107.3,
+                "plyometric_foot_contacts": 40
             },
             "kinematic_metrics": null
         },
@@ -1391,16 +1310,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 101.3,
-                "readiness_score_100": 78.1
+                "morning_hrv_rmssd": 101.2
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.77,
-                "thorax_humerus_energy_transfer_rate_wkg": 35.5,
-                "peak_release_velocity_ms": 31.11,
-                "avg_release_angle_deg": 36.0,
-                "avg_attack_angle_deg": 2.7
+                "runup_velocity_cross_steps_ms": 7.64,
+                "thorax_humerus_energy_transfer_rate_wkg": 34.4,
+                "peak_release_velocity_ms": 30.29,
+                "avg_release_angle_deg": 36.3,
+                "avg_attack_angle_deg": 1.8
             }
         },
         {
@@ -1411,8 +1329,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 96.3,
-                "readiness_score_100": 93.9
+                "morning_hrv_rmssd": 75.3
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -1425,14 +1342,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 93.8,
-                "readiness_score_100": 100.0
+                "morning_hrv_rmssd": 92.0
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 185.4,
-                "hang_power_clean_working_max_kg": 125.7,
-                "pullover_working_max_kg": 107.4,
-                "plyometric_foot_contacts": 29
+                "back_squat_working_max_kg": 192.6,
+                "hang_power_clean_working_max_kg": 130.6,
+                "pullover_working_max_kg": 111.5,
+                "plyometric_foot_contacts": 32
             },
             "kinematic_metrics": null
         },
@@ -1444,16 +1360,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 102.2,
-                "readiness_score_100": 80.9
+                "morning_hrv_rmssd": 96.3
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.28,
-                "thorax_humerus_energy_transfer_rate_wkg": 38.3,
-                "peak_release_velocity_ms": 31.55,
-                "avg_release_angle_deg": 34.7,
-                "avg_attack_angle_deg": 1.2
+                "runup_velocity_cross_steps_ms": 7.39,
+                "thorax_humerus_energy_transfer_rate_wkg": 34.8,
+                "peak_release_velocity_ms": 31.34,
+                "avg_release_angle_deg": 35.7,
+                "avg_attack_angle_deg": 2.7
             }
         },
         {
@@ -1464,14 +1379,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 83.4,
-                "readiness_score_100": 90.4
+                "morning_hrv_rmssd": 94.5
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 188.2,
-                "hang_power_clean_working_max_kg": 127.5,
-                "pullover_working_max_kg": 108.9,
-                "plyometric_foot_contacts": 41
+                "back_squat_working_max_kg": 192.7,
+                "hang_power_clean_working_max_kg": 130.6,
+                "pullover_working_max_kg": 111.5,
+                "plyometric_foot_contacts": 45
             },
             "kinematic_metrics": null
         },
@@ -1483,16 +1397,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 78.5,
-                "readiness_score_100": 62.9
+                "morning_hrv_rmssd": 93.3
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.69,
-                "thorax_humerus_energy_transfer_rate_wkg": 33.8,
-                "peak_release_velocity_ms": 31.53,
-                "avg_release_angle_deg": 36.7,
-                "avg_attack_angle_deg": 2.1
+                "runup_velocity_cross_steps_ms": 7.77,
+                "thorax_humerus_energy_transfer_rate_wkg": 36.1,
+                "peak_release_velocity_ms": 32.32,
+                "avg_release_angle_deg": 35.7,
+                "avg_attack_angle_deg": 2.0
             }
         },
         {
@@ -1503,14 +1416,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 95.9,
-                "readiness_score_100": 88.3
+                "morning_hrv_rmssd": 84.2
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 188.2,
-                "hang_power_clean_working_max_kg": 127.6,
-                "pullover_working_max_kg": 108.9,
-                "plyometric_foot_contacts": 36
+                "back_squat_working_max_kg": 189.9,
+                "hang_power_clean_working_max_kg": 128.7,
+                "pullover_working_max_kg": 109.9,
+                "plyometric_foot_contacts": 34
             },
             "kinematic_metrics": null
         },
@@ -1522,16 +1434,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 88.4,
-                "readiness_score_100": 88.0
+                "morning_hrv_rmssd": 96.1
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.7,
-                "thorax_humerus_energy_transfer_rate_wkg": 34.0,
-                "peak_release_velocity_ms": 31.89,
-                "avg_release_angle_deg": 35.7,
-                "avg_attack_angle_deg": 1.9
+                "runup_velocity_cross_steps_ms": 7.75,
+                "thorax_humerus_energy_transfer_rate_wkg": 37.9,
+                "peak_release_velocity_ms": 31.41,
+                "avg_release_angle_deg": 37.8,
+                "avg_attack_angle_deg": 2.4
             }
         },
         {
@@ -1542,8 +1453,7 @@
                 "session_type": "recovery"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 96.4,
-                "readiness_score_100": 66.1
+                "morning_hrv_rmssd": 77.2
             },
             "gym_metrics": null,
             "kinematic_metrics": null
@@ -1556,14 +1466,13 @@
                 "session_type": "gym_cns_plyometrics"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 79.4,
-                "readiness_score_100": 71.2
+                "morning_hrv_rmssd": 89.3
             },
             "gym_metrics": {
-                "back_squat_working_max_kg": 177.5,
-                "hang_power_clean_working_max_kg": 120.3,
-                "pullover_working_max_kg": 102.8,
-                "plyometric_foot_contacts": 36
+                "back_squat_working_max_kg": 181.8,
+                "hang_power_clean_working_max_kg": 123.3,
+                "pullover_working_max_kg": 105.3,
+                "plyometric_foot_contacts": 37
             },
             "kinematic_metrics": null
         },
@@ -1575,16 +1484,15 @@
                 "session_type": "runway_technical"
             },
             "physiological_readiness": {
-                "morning_hrv_rmssd": 95.8,
-                "readiness_score_100": 83.2
+                "morning_hrv_rmssd": 101.9
             },
             "gym_metrics": null,
             "kinematic_metrics": {
-                "runup_velocity_cross_steps_ms": 7.87,
-                "thorax_humerus_energy_transfer_rate_wkg": 37.7,
-                "peak_release_velocity_ms": 31.59,
-                "avg_release_angle_deg": 35.9,
-                "avg_attack_angle_deg": 2.7
+                "runup_velocity_cross_steps_ms": 7.4,
+                "thorax_humerus_energy_transfer_rate_wkg": 33.3,
+                "peak_release_velocity_ms": 31.8,
+                "avg_release_angle_deg": 36.0,
+                "avg_attack_angle_deg": 1.4
             }
         }
     ]

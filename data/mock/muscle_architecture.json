@@ -1,0 +1,24 @@
+{
+    "assessment_date": "2026-04-10",
+    "vastus_lateralis": {
+        "fascicle_length_cm": 9.8,
+        "pennation_angle_deg": 18.5,
+        "muscle_thickness_cm": 3.2,
+        "muscle_csa_cm2": 82.0,
+        "type_ii_pct_csa": 62.0
+    },
+    "pectoralis_major": {
+        "fascicle_length_cm": 14.2,
+        "pennation_angle_deg": 12.0,
+        "muscle_thickness_cm": 2.8,
+        "muscle_csa_cm2": 58.0,
+        "type_ii_pct_csa": 55.0
+    },
+    "gastrocnemius_medial": {
+        "fascicle_length_cm": 5.6,
+        "pennation_angle_deg": 22.0,
+        "muscle_thickness_cm": 2.1,
+        "muscle_csa_cm2": 45.0,
+        "type_ii_pct_csa": 50.0
+    }
+}
