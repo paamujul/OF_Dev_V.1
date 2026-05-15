@@ -12,6 +12,7 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from data_struct.athlete_profile import load_athlete
 from algorithms.integrators.travel_readiness import compute_travel_readiness
 from algorithms.integrators.bloodwork_readiness import compute_bloodwork_readiness
+from algorithms.integrators.biomechanicals_readiness import compute_biomechanicals_readiness
 from algorithms.integrators.master_composite import compile_master_output
 
 
@@ -19,10 +20,10 @@ def get_data_paths():
     """returns absolute paths to all mock data files."""
     base = os.path.dirname(os.path.abspath(__file__))
     paths = {
-        "bio": os.path.join(base, "data", "mock", "athlete_bio.json"),
-        "wearable": os.path.join(base, "data", "mock", "wearable_data.json"),
-        "bloodwork": os.path.join(base, "data", "mock", "bloodwork_panels.json"),
-        "travel": os.path.join(base, "data", "mock", "travel_scenario.json"),
+        "bio": os.path.join(base, "data", "backtest", "athlete_bio.json"),
+        "wearable": os.path.join(base, "data", "backtest", "wearable_data.json"),
+        "bloodwork": os.path.join(base, "data", "backtest", "bloodwork_panels.json"),
+        "travel": os.path.join(base, "data", "backtest", "travel_scenario.json"),
     }
     return paths
 
@@ -39,7 +40,7 @@ def run_pipeline():
         travel_path=paths["travel"],
     )
     print(f"  athlete: {athlete.bio['name']}")
-    print(f"  destination: {athlete.travel['destination']['city']}")
+    print(f"  destination: {athlete.travel['destination'].get('city', 'Unknown')}")
     print(f"  timezone shift: {athlete.timezone_shift()} hours {athlete.direction()}")
 
     print("\nrunning travel algorithms...")
@@ -56,11 +57,19 @@ def run_pipeline():
     print(f"  omega_bio: {bloodwork_result['omega_bio']}")
     print(f"  clinical flags: {bloodwork_result['flag_count']}")
 
+    print("\nrunning biomechanicals algorithms...")
+    biomechanicals_result = compute_biomechanicals_readiness(athlete)
+    print(f"  biomechanicals composite: {biomechanicals_result['biomechanicals_composite_score']}")
+    print(f"  risk level: {biomechanicals_result['risk_level']}")
+    print(f"  biomechanical flags: {biomechanicals_result['flag_count']}")
+
     print("\ncompiling master output...")
     base = os.path.dirname(os.path.abspath(__file__))
     output_path = os.path.join(base, "outputs", "master_output.json")
 
-    master = compile_master_output(athlete, travel_result, bloodwork_result, output_path)
+    master = compile_master_output(
+        athlete, travel_result, bloodwork_result, biomechanicals_result, output_path
+    )
 
     print(f"\n{'=' * 50}")
     print(f"  master readiness score: {master['master_readiness']['score']}")
