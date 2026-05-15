@@ -1,8 +1,13 @@
 """
 pre-travel readiness score — multiplicative attenuation model.
-ref: plews et al. (2013), buchheit (2014), fullagar et al. (2015),
-     hayes et al. (2015), brancaccio et al. (2007), sim et al. (2019),
-     waterhouse et al. (2007).
+ref: plews et al. (2013), sports medicine — hrv baseline z-score.
+ref: buchheit (2014), frontiers in physiology — ans combined readiness.
+ref: miller et al. (2020), bmj open sport & exercise medicine — rr telemetry.
+ref: fullagar et al. (2015), sports medicine — sleep efficiency.
+ref: simpson et al. (2017), scand j med sci sports — sleep debt.
+ref: kellmann et al. (2018), ijspp — sleep architecture.
+ref: hayes et al. (2015), brancaccio et al. (2007), sim et al. (2019).
+ref: waterhouse et al. (2007), journal of sports sciences.
 """
 
 import math
@@ -13,10 +18,17 @@ from config.settings import (
     w_slp,
     z_hrv_optimal_low,
     z_hrv_optimal_high,
-    z_hrv_hyperactivity,
-    ans_penalty_per_z,
-    ans_hyperactivity_cap,
+    z_hrv_hyperactivity_threshold,
+    z_rhr_hyperactivity_threshold,
+    hyperactivity_cap,
+    ans_hrv_penalty_weight,
+    ans_rhr_penalty_weight,
+    ans_rr_penalty_weight,
     sleep_tst_cap,
+    sleep_debt_threshold_hours,
+    sleep_debt_penalty,
+    deep_rem_minimum_percent,
+    architecture_penalty,
     ftc_deficit_threshold,
     rho_hormonal_penalty,
     ferritin_threshold,
@@ -31,44 +43,79 @@ from config.settings import (
 )
 
 
-def compute_ans_readiness(hrv_history):
+def compute_ans_readiness(hrv_history, rhr_history, rr_history):
     """
-    autonomic readiness via ln(rmssd) z-score.
-    ref: plews et al. (2013), sports medicine.
-    ref: buchheit (2014), frontiers in physiology.
+    upgraded autonomic readiness via multi-signal z-scores.
+    integrates hrv, resting heart rate, and respiratory rate.
+    ref: plews et al. (2013), buchheit (2014), miller et al. (2020).
     """
     ln_values = [math.log(v) for v in hrv_history]
     mean_ln = statistics.mean(ln_values)
     std_ln = statistics.stdev(ln_values)
 
     if std_ln == 0:
-        return 100.0
-
-    current_ln = ln_values[-1]
-    z_hrv = (current_ln - mean_ln) / std_ln
-
-    if z_hrv_optimal_low <= z_hrv <= z_hrv_optimal_high:
-        phi_ans = 100.0
-    elif z_hrv < z_hrv_optimal_low:
-        phi_ans = 100.0 - (ans_penalty_per_z * abs(z_hrv))
-    elif z_hrv > z_hrv_hyperactivity:
-        phi_ans = ans_hyperactivity_cap
+        z_hrv = 0.0
     else:
-        phi_ans = 100.0 - (ans_penalty_per_z * (z_hrv - z_hrv_optimal_high))
+        current_ln = ln_values[-1]
+        z_hrv = (current_ln - mean_ln) / std_ln
+
+    rhr_mean = statistics.mean(rhr_history)
+    rhr_std = statistics.stdev(rhr_history)
+
+    if rhr_std == 0:
+        z_rhr = 0.0
+    else:
+        z_rhr = (rhr_history[-1] - rhr_mean) / rhr_std
+
+    rr_mean = statistics.mean(rr_history)
+    rr_std = statistics.stdev(rr_history)
+
+    if rr_std == 0:
+        z_rr = 0.0
+    else:
+        z_rr = (rr_history[-1] - rr_mean) / rr_std
+
+    hrv_penalty = ans_hrv_penalty_weight * abs(min(0, z_hrv))
+    rhr_penalty = ans_rhr_penalty_weight * max(0, z_rhr)
+    rr_penalty = ans_rr_penalty_weight * max(0, z_rr)
+
+    phi_ans = 100.0 - (hrv_penalty + rhr_penalty + rr_penalty)
+
+    if z_hrv > z_hrv_hyperactivity_threshold and z_rhr < z_rhr_hyperactivity_threshold:
+        phi_ans = min(phi_ans, hyperactivity_cap)
 
     phi_ans = max(0.0, min(100.0, phi_ans))
-    return phi_ans
+    return phi_ans, {"z_hrv": round(z_hrv, 3), "z_rhr": round(z_rhr, 3), "z_rr": round(z_rr, 3)}
 
 
-def compute_sleep_readiness(sleep_efficiency, total_sleep_time):
+def compute_sleep_readiness(sleep_efficiency, total_sleep_time,
+                            sleep_debt, deep_rem_percent):
     """
-    sleep readiness from efficiency and total sleep time.
-    ref: fullagar et al. (2015), sports medicine.
+    upgraded sleep readiness with debt and architecture modifiers.
+    ref: fullagar et al. (2015), simpson et al. (2017), kellmann et al. (2018).
     """
     se_fraction = sleep_efficiency / 100.0
     tst_fraction = min(total_sleep_time, sleep_tst_cap) / sleep_tst_cap
-    phi_slp = se_fraction * tst_fraction * 100.0
-    return max(0.0, min(100.0, phi_slp))
+
+    if sleep_debt > sleep_debt_threshold_hours:
+        gamma_debt = sleep_debt_penalty
+    else:
+        gamma_debt = 1.0
+
+    if deep_rem_percent < deep_rem_minimum_percent:
+        gamma_stages = architecture_penalty
+    else:
+        gamma_stages = 1.0
+
+    phi_slp = se_fraction * tst_fraction * gamma_debt * gamma_stages * 100.0
+
+    details = {
+        "gamma_debt": gamma_debt,
+        "gamma_stages": gamma_stages,
+        "deep_rem_percent": round(deep_rem_percent, 1),
+        "sleep_debt_hours": round(sleep_debt, 2),
+    }
+    return max(0.0, min(100.0, phi_slp)), details
 
 
 def compute_biochemical_attenuation(bloodwork):
@@ -150,14 +197,19 @@ def compute_pretravel_score(athlete):
     """
     master pre-travel readiness score (r_total).
     r_total = [(w_ans * phi_ans) + (w_slp * phi_slp)] * omega_bio * lambda_env
-    ref: project plan doc 1 — multiplicative attenuation model.
+    ref: project plan doc 1 — upgraded multiplicative attenuation model.
     """
     hrv_history = athlete.wearables["hrv_rmssd_30d"]
-    phi_ans = compute_ans_readiness(hrv_history)
+    rhr_history = athlete.wearables["resting_hr_7d"]
+    rr_history = athlete.wearables["respiratory_rate_7d"]
+
+    phi_ans, ans_details = compute_ans_readiness(hrv_history, rhr_history, rr_history)
 
     sleep_eff = athlete.avg_sleep_efficiency()
     sleep_tst = athlete.avg_total_sleep_time()
-    phi_slp = compute_sleep_readiness(sleep_eff, sleep_tst)
+    sleep_debt = athlete.sleep_debt()
+    deep_rem = athlete.avg_deep_rem_percent()
+    phi_slp, slp_details = compute_sleep_readiness(sleep_eff, sleep_tst, sleep_debt, deep_rem)
 
     omega_bio, bio_details = compute_biochemical_attenuation(athlete.bloodwork)
 
@@ -177,6 +229,8 @@ def compute_pretravel_score(athlete):
         "wearable_baseline": round(wearable_baseline, 2),
         "phi_ans": round(phi_ans, 2),
         "phi_slp": round(phi_slp, 2),
+        "ans_details": ans_details,
+        "sleep_details": slp_details,
         "omega_bio": round(omega_bio, 4),
         "lambda_env": round(lambda_env, 4),
         "biochemical_details": bio_details,

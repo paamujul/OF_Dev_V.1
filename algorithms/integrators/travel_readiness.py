@@ -21,8 +21,7 @@ def compute_travel_readiness(athlete):
 
     tz_shift = athlete.timezone_shift()
     direction = athlete.direction()
-    tmin = athlete.bio.get("tmin_hour", 5.0)
-    circadian = generate_zeitgeber_schedule(tz_shift, direction, tmin)
+    circadian = generate_zeitgeber_schedule(tz_shift, direction, athlete)
 
     pretravel_score = pretravel["r_total"]
     degradation_drop = degradation["predicted_readiness_drop_percent"]

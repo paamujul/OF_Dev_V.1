@@ -1,55 +1,49 @@
 """
-travel degradation index and dynamic homeostatic stabilization.
-ref: pmc8279034 — managing travel fatigue consensus statement.
-ref: pmc7137984 — medical issues with commercial flights.
-ref: pmc10362518 — compression garments and venous return.
-ref: pmc10520441 — long haul travel and sleep.
-ref: pmc12624380 — simulated short-haul flights.
+telemetry-driven travel degradation index and dynamic homeostatic stabilization.
+ref: muhm et al. (2007), nejm — spo2 in-flight telemetry.
+ref: zalesin et al. (2001), annals of internal medicine — venous stasis.
+ref: waterhouse et al. (2005), journal of sports sciences — skin temp proxy.
+ref: botek et al. (2010), ejap — hrv and flight performance.
+ref: juliff et al. (2015), jsms — sleep architecture and tz shifts.
 """
 
 from config.settings import (
-    alpha_hypoxic,
-    sea_level_pressure,
-    cabin_pressure_default,
-    beta_kinematic,
-    venous_stasis_no_compression,
-    venous_stasis_with_compression,
+    alpha_spo2,
+    beta_immobility,
     gamma_circadian_east,
     gamma_circadian_west,
     dhs_venous_sitting_max_minutes,
     dhs_rmssd_deviation_threshold,
     dhs_spo2_critical,
+    dhs_circadian_advance_per_day,
 )
 
 
-def compute_hypoxic_tax(cabin_pressure_pa):
+def compute_hypoxic_tax(spo2_baseline, spo2_transit):
     """
-    hypoxic stress from cabin altitude.
-    ref: pmc7137984 — aerospace pressure effects.
+    hypoxic stress from direct spo2 telemetry delta.
+    ref: muhm et al. (2007), nejm.
     """
-    pressure_ratio = 1.0 - (cabin_pressure_pa / sea_level_pressure)
-    tax = alpha_hypoxic * pressure_ratio
+    delta_spo2 = max(0.0, spo2_baseline - spo2_transit)
+    tax = alpha_spo2 * delta_spo2 * 0.01
     return max(0.0, tax)
 
 
-def compute_kinematic_tax(flight_duration_hours, has_compression):
+def compute_kinematic_tax(flight_duration_hours, active_minutes_inflight):
     """
-    kinematic tax from prolonged immobility.
-    ref: pmc10362518 — compression garments improve venous return.
+    kinematic tax from tracked immobility.
+    ref: zalesin et al. (2001), annals of internal medicine.
     """
-    if has_compression:
-        stasis = venous_stasis_with_compression
-    else:
-        stasis = venous_stasis_no_compression
-
-    tax = beta_kinematic * (flight_duration_hours * stasis)
+    flight_minutes = flight_duration_hours * 60.0
+    immobile_minutes = max(0.0, flight_minutes - active_minutes_inflight)
+    tax = beta_immobility * immobile_minutes * 0.001
     return max(0.0, tax)
 
 
 def compute_circadian_tax(timezone_shift, direction):
     """
     circadian disruption tax based on direction and magnitude.
-    ref: pmc8279034 — managing travel fatigue consensus statement.
+    ref: juliff et al. (2015), jsms.
     """
     if direction == "east":
         coeff = gamma_circadian_east
@@ -60,15 +54,15 @@ def compute_circadian_tax(timezone_shift, direction):
     return max(0.0, tax)
 
 
-def compute_tdi(cabin_pressure_pa, flight_duration_hours, timezone_shift,
-                direction, has_compression):
+def compute_tdi(spo2_baseline, spo2_transit, flight_duration_hours,
+                active_minutes_inflight, timezone_shift, direction):
     """
-    travel degradation index (tdi) — predicted % drop in baseline readiness.
+    wearable travel degradation index (tdi_wearable).
     tdi = hypoxic_tax + kinematic_tax + circadian_tax
-    ref: project plan doc 2 — travel allostatic load model.
+    ref: project plan doc 2 — telemetry-driven travel degradation.
     """
-    hypoxic = compute_hypoxic_tax(cabin_pressure_pa)
-    kinematic = compute_kinematic_tax(flight_duration_hours, has_compression)
+    hypoxic = compute_hypoxic_tax(spo2_baseline, spo2_transit)
+    kinematic = compute_kinematic_tax(flight_duration_hours, active_minutes_inflight)
     circadian = compute_circadian_tax(timezone_shift, direction)
 
     tdi = hypoxic + kinematic + circadian
@@ -79,6 +73,10 @@ def compute_tdi(cabin_pressure_pa, flight_duration_hours, timezone_shift,
         "hypoxic_tax": round(hypoxic, 4),
         "kinematic_tax": round(kinematic, 4),
         "circadian_tax": round(circadian, 4),
+        "spo2_delta": round(max(0.0, spo2_baseline - spo2_transit), 1),
+        "immobile_minutes": round(
+            max(0.0, flight_duration_hours * 60 - active_minutes_inflight), 1
+        ),
     }
     return tdi, result
 
@@ -87,7 +85,7 @@ def compute_dhs_trigger(current_value, baseline_mean, baseline_std):
     """
     dynamic homeostatic stabilization trigger.
     returns the z-score deviation from baseline.
-    ref: pmc7137984 — medical issues with commercial flights.
+    ref: botek et al. (2010), ejap.
     """
     if baseline_std == 0:
         return 0.0
@@ -97,9 +95,8 @@ def compute_dhs_trigger(current_value, baseline_mean, baseline_std):
 
 def generate_interventions(athlete):
     """
-    generates intervention recommendations based on dhs thresholds.
-    ref: pmc10362518 — compression garments.
-    ref: pmc12624380 — short-haul flight performance effects.
+    generates wearable-driven intervention recommendations.
+    ref: muhm et al. (2007), zalesin et al. (2001), waterhouse et al. (2005).
     """
     interventions = []
 
@@ -111,48 +108,45 @@ def generate_interventions(athlete):
 
     hrv_z = compute_dhs_trigger(current_hrv, hrv_mean, hrv_std)
 
-    if hrv_z > dhs_rmssd_deviation_threshold:
+    spo2_transit = athlete.spo2_transit()
+
+    if spo2_transit < dhs_spo2_critical or hrv_z > dhs_rmssd_deviation_threshold:
         interventions.append({
-            "trigger": "autonomic_deviation",
-            "z_score": round(hrv_z, 2),
-            "action": "paced resonance breathing at 5.5 breaths per minute",
-            "priority": "high",
+            "trigger": "hypoxic_autonomic",
+            "hrv_z_score": round(hrv_z, 2),
+            "spo2_transit": spo2_transit,
+            "action": "mandatory tactical breathing protocol to raise spo2 and stabilize ans",
+            "priority": "critical" if spo2_transit < dhs_spo2_critical else "high",
         })
 
-    spo2_values = athlete.wearables.get("spo2_7d", [])
-    if spo2_values:
-        min_spo2 = min(spo2_values)
-        if min_spo2 < dhs_spo2_critical:
-            interventions.append({
-                "trigger": "spo2_critical",
-                "value": min_spo2,
-                "action": "cabin mobility protocol and supplemental oxygen if available",
-                "priority": "critical",
-            })
-
     flight_duration = athlete.travel["flight"]["duration_hours"]
-    sitting_blocks = int(flight_duration * 60 / dhs_venous_sitting_max_minutes)
+    active_minutes = athlete.active_minutes_inflight()
+    sitting_minutes = flight_duration * 60 - active_minutes
+    stasis_blocks = int(sitting_minutes / dhs_venous_sitting_max_minutes)
 
-    if sitting_blocks > 0:
+    if stasis_blocks > 0:
         interventions.append({
             "trigger": "venous_stasis",
-            "mobilization_intervals": sitting_blocks,
+            "mobilization_intervals": stasis_blocks,
             "interval_minutes": dhs_venous_sitting_max_minutes,
             "action": "5 minute mobilization protocol with isometric calf contractions",
             "priority": "standard",
         })
 
     direction = athlete.direction()
-    if direction == "east":
+    skin_temps = athlete.nighttime_skin_temps()
+    if skin_temps:
         interventions.append({
-            "trigger": "circadian_advance_needed",
-            "action": "blue light blocking glasses during flight, melatonin upon arrival evening",
-            "priority": "standard",
-        })
-    else:
-        interventions.append({
-            "trigger": "circadian_delay_needed",
-            "action": "bright light exposure during early flight hours, suppress melatonin",
+            "trigger": "circadian_sync",
+            "direction": direction,
+            "expected_advance_per_day": dhs_circadian_advance_per_day,
+            "action": (
+                "time high-intensity exercise at wtmin + 10 hours "
+                "to drag peripheral clocks into alignment"
+                if direction == "east"
+                else "bright light exposure during early activity hours, "
+                     "delay exercise to late afternoon"
+            ),
             "priority": "standard",
         })
 
@@ -161,17 +155,18 @@ def generate_interventions(athlete):
 
 def compute_travel_degradation(athlete):
     """
-    full travel degradation analysis.
-    ref: project plan doc 2.
+    full wearable-driven travel degradation analysis.
+    ref: project plan doc 2 — telemetry-driven tdi.
     """
     flight = athlete.travel["flight"]
 
     tdi_value, tdi_details = compute_tdi(
-        cabin_pressure_pa=flight.get("cabin_pressure_pa", cabin_pressure_default),
+        spo2_baseline=athlete.spo2_baseline(),
+        spo2_transit=athlete.spo2_transit(),
         flight_duration_hours=flight["duration_hours"],
+        active_minutes_inflight=athlete.active_minutes_inflight(),
         timezone_shift=flight["timezone_shift"],
         direction=flight["direction"],
-        has_compression=flight.get("has_compression_garments", False),
     )
 
     interventions = generate_interventions(athlete)
