@@ -1,9 +1,10 @@
 """
 wearable-adapted thermoregulatory performance model (watpm).
 ref: buller et al. (2013), physiological measurement — core temp estimation.
+ref: gagnon et al. (2013), journal of applied physiology — energy and sweat.
 ref: liljegren et al. (2008), joeh — ewbgt approximation.
-ref: duking et al. (2016), frontiers in physiology, pmc4754445.
 ref: welles et al. (2017), msse — skin temp as thermoregulatory proxy.
+ref: duking et al. (2016), frontiers in physiology, pmc4754445.
 """
 
 import math
@@ -16,8 +17,9 @@ from config.settings import (
     core_temp_ceiling,
     core_temp_alpha,
     ewbgt_precool_threshold,
-    bml_alert_threshold,
-    bml_critical_threshold,
+    k_dehydration,
+    fluid_energy_trigger_kcal,
+    fluid_hr_zone_trigger_minutes,
     acclimation_half_days,
     acclimation_full_days,
     clothing_factor_default,
@@ -46,15 +48,14 @@ def estimate_ewbgt(temp_c, humidity_percent, wind_speed_m_s, solar_radiation_w_m
     return round(ewbgt, 2)
 
 
-def compute_thermal_load(hr_active, solar_radiation_w_m2, clothing_factor,
+def compute_thermal_load(energy_burned_rate, solar_radiation_w_m2, clothing_factor,
                          wind_speed_m_s, skin_temp_c, temp_c, humidity_percent):
     """
     estimated thermal load vector (e_phi_thermal).
-    ratio of required evaporative cooling to maximum evaporative capacity.
+    uses wearable energy burned rate as metabolic heat proxy.
     ref: buller et al. (2013), physiological measurement.
     """
-    k_wearable = 0.5
-    e_required = (k_wearable * hr_active) + (solar_radiation_w_m2 * clothing_factor)
+    e_required = energy_burned_rate + (solar_radiation_w_m2 * clothing_factor)
 
     e_sat_skin = 6.105 * math.exp((17.27 * skin_temp_c) / (237.7 + skin_temp_c))
     e_sat_ambient = 6.105 * math.exp((17.27 * temp_c) / (237.7 + temp_c))
@@ -73,28 +74,28 @@ def compute_thermal_load(hr_active, solar_radiation_w_m2, clothing_factor,
     return phi_thermal
 
 
-def compute_fluid_vector(baseline_sweat_rate, hr_active, hr_rest,
-                         duration_minutes, body_mass_kg):
+def compute_fluid_vector(energy_burned, strain, ewbgt):
     """
-    algorithmic fluid loss vector (e_phi_fluid).
-    ref: duking et al. (2016), frontiers in physiology, pmc4754445.
+    wearable-driven fluid loss vector (e_phi_fluid).
+    uses energy burned * strain * ewbgt to model cardiovascular fluid penalty.
+    ref: gagnon et al. (2013), journal of applied physiology.
     """
-    hr_differential = max(0, hr_active - hr_rest)
-    duration_hours = duration_minutes / 60.0
-
-    estimated_sweat_volume = baseline_sweat_rate * hr_differential * duration_hours / 100.0
-    percent_bml = (estimated_sweat_volume / body_mass_kg) * 100.0
-
-    k_fluid = 0.3
-    phi_fluid = math.exp(k_fluid * percent_bml) - 1.0
+    exponent = k_dehydration * energy_burned * strain * ewbgt
+    phi_fluid = math.exp(exponent) - 1.0
     phi_fluid = max(0.0, min(1.0, phi_fluid))
 
+    alert_status = "normal"
+    if exponent > 0.05:
+        alert_status = "critical"
+    elif exponent > 0.02:
+        alert_status = "warning"
+
     details = {
-        "estimated_sweat_volume_l": round(estimated_sweat_volume, 3),
-        "percent_bml": round(percent_bml, 2),
-        "alert_status": "critical" if percent_bml > bml_critical_threshold
-                        else "warning" if percent_bml > bml_alert_threshold
-                        else "normal",
+        "energy_burned": round(energy_burned, 1),
+        "strain": round(strain, 1),
+        "ewbgt_factor": round(ewbgt, 2),
+        "exponent": round(exponent, 6),
+        "alert_status": alert_status,
     }
     return phi_fluid, details
 
@@ -158,12 +159,16 @@ def compute_expected_power(athlete):
     )
 
     hr_active = wearables["active_hr_bpm_last_session"]
-    hr_rest = bio["resting_hr_bpm"]
+    hr_rest = athlete.resting_hr_mean()
     skin_temp = athlete.avg_skin_temp()
     clothing = clothing_factor_default
 
+    energy_burned = wearables["active_energy_kcal_last_session"]
+    session_minutes = wearables.get("session_duration_minutes", 90)
+    energy_rate = energy_burned / max(session_minutes, 1) * 60.0
+
     phi_thermal = compute_thermal_load(
-        hr_active=hr_active,
+        energy_burned_rate=energy_rate,
         solar_radiation_w_m2=dest.get("solar_radiation_w_m2", 500),
         clothing_factor=clothing,
         wind_speed_m_s=dest.get("wind_speed_m_s", 2.0),
@@ -172,13 +177,8 @@ def compute_expected_power(athlete):
         humidity_percent=dest["humidity_percent"],
     )
 
-    phi_fluid, fluid_details = compute_fluid_vector(
-        baseline_sweat_rate=bio["baseline_sweat_rate_l_per_hr"],
-        hr_active=hr_active,
-        hr_rest=hr_rest,
-        duration_minutes=wearables.get("session_duration_minutes", 90),
-        body_mass_kg=bio["weight_kg"],
-    )
+    strain = athlete.strain()
+    phi_fluid, fluid_details = compute_fluid_vector(energy_burned, strain, ewbgt)
 
     phi_metabolic, e_tcore = compute_metabolic_shift(skin_temp, hr_active, hr_rest)
 
@@ -196,6 +196,13 @@ def compute_expected_power(athlete):
 
     precool_needed = ewbgt > ewbgt_precool_threshold
 
+    hr_zones = athlete.hr_zone_minutes()
+    zone3_plus = (
+        hr_zones.get("zone3", 0)
+        + hr_zones.get("zone4", 0)
+        + hr_zones.get("zone5", 0)
+    )
+
     triggers = []
     if precool_needed:
         triggers.append({
@@ -209,11 +216,13 @@ def compute_expected_power(athlete):
             "estimated_core_temp": e_tcore,
             "action": "reduce power output by 5 to 10 percent",
         })
-    if fluid_details["alert_status"] != "normal":
+    if (energy_burned > fluid_energy_trigger_kcal
+            and zone3_plus > fluid_hr_zone_trigger_minutes):
         triggers.append({
             "type": "rehydration",
-            "percent_bml": fluid_details["percent_bml"],
-            "action": "targeted electrolyte fluid consumption",
+            "energy_burned": energy_burned,
+            "zone3_plus_minutes": zone3_plus,
+            "action": "haptic alert for electrolyte fluid consumption",
         })
 
     result = {

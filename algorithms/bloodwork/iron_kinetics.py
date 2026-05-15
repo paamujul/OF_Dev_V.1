@@ -104,9 +104,11 @@ def run_iron_kinetics(bloodwork):
         daily_supplement_mg=supplement_mg,
     )
 
+    serum_iron = iron_panel.get("serum_iron_ug_dl", 100.0)
+    tibc = iron_panel.get("tibc_ug_dl", 300.0)
     result["transferrin_saturation"] = compute_transferrin_saturation(
-        iron_panel["serum_iron_ug_dl"],
-        iron_panel["tibc_ug_dl"],
+        serum_iron,
+        tibc,
     )
 
     return result
