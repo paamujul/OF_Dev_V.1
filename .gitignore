@@ -16,3 +16,6 @@ Flowchart/
 frontend/
 Presentations/
 data/
+ai/cache/
+hf_ehr_temp/
+

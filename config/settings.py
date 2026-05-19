@@ -340,3 +340,8 @@ fatigue_rr_elevated = 18.0
 
 fatigue_baseline_reps = 12
 fatigue_min_reps = 3
+
+"""gemini api configuration"""
+import os
+gemini_model_name = "gemini-2.5-flash"
+gemini_api_key = os.environ.get("GEMINI_API_KEY", "")
